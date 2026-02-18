@@ -1,0 +1,881 @@
+fire<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevención de Adicciones - Información y Conciencia</title>
+    <link rel="icon" href="noSmoke.svg" type="image/svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-dark: #1a2332;
+            --primary-blue: #2d5a7b;
+            --accent-teal: #3aa89e;
+            --accent-coral: #ff6b6b;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a5568;
+            --border-color: #e2e8f0;
+            --gradient-1: linear-gradient(135deg, #2d5a7b 0%, #3aa89e 100%);
+            --gradient-2: linear-gradient(135deg, #1a2332 0%, #2d5a7b 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.5;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 0px 40x rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+        
+        .logo span {
+            color: var(--accent-teal);
+            box-shadow: 0 0px 40px rgba(218, 9, 9, 0.3);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links span {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-teal);
+            transition: width 0.9s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 85vh;
+            background: var(--gradient-2);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(58, 168, 158, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1.5px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero h1 .highlight {
+            color: var(--accent-teal);
+            display: inline-block;
+        }
+        
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-teal);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(58, 168, 158, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(58, 168, 158, 0.4);
+            background: #35968d;
+        }
+        
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--light-bg);
+            color: var(--accent-teal);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--text-medium);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Tipos de Adicciones - Cards Grid */
+        .addiction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .addiction-card {
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .addiction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .addiction-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-teal);
+        }
+        
+        .addiction-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .addiction-card h3 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .addiction-card p {
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+        
+        .add-content-btn {
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--light-bg);
+            color: var(--primary-blue);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .add-content-btn:hover {
+            background: var(--accent-teal);
+            color: var(--white);
+        }
+        
+        /* Estadísticas */
+        .stats-container {
+            background: var(--gradient-2);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(58, 168, 158, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-family: 'Epilogue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--accent-teal);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .stat-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Información Preventiva */
+        .prevention-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .prevention-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .prevention-item {
+            padding-left: 2rem;
+            border-left: 4px solid var(--accent-teal);
+        }
+        
+        .prevention-item h3 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+        
+        .prevention-item p {
+            color: var(--text-medium);
+            line-height: 1.8;
+        }
+        
+        .prevention-visual {
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .prevention-visual .icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .prevention-visual h4 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        /* Recursos & Videos */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .resource-card {
+            background: var(--white);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .resource-content {
+            padding: 2rem;
+        }
+        
+        .resource-content h3 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+        
+        .resource-content p {
+            color: var(--text-medium);
+            margin-bottom: 1.5rem;
+        }
+        
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            gap: 0.8rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 2rem 2rem;
+            margin-top: 6rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-teal);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .prevention-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .stats-container {
+                padding: 3rem 2rem;
+            }
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Scroll reveal effect */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">Prevención<span>+</span></div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio"><span>Inicio</span></a></li>
+                <li><a href="#tipos">Tipos de Adicciones</a></li>
+                <li><a href="#estadisticas">Estadísticas</a></li>
+                <li><a href="#prevencion">Prevención</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>La <span class="highlight">prevención</span> comienza con la información</h1>
+            <p>Conoce los diferentes tipos de adicciones y cómo podemos crear conciencia sobre un problema que afecta a millones de personas en todo el mundo.</p>
+            <a href="#tipos" class="cta-button">Explorar información</a>
+        </div>
+    </section>
+
+    <!-- Tipos de Adicciones -->
+    <section id="tipos">
+        <div class="section-header reveal">
+            <span class="section-tag">Conocimiento</span>
+            <h2>Tipos de Adicciones</h2>
+            <p>Las adicciones no se limitan solo a sustancias. Comprende las diferentes formas en que pueden manifestarse.</p>
+        </div>
+        
+        <div class="addiction-grid">
+            <div class="addiction-card reveal">
+                <div class="card-icon">💊</div>
+                <h3>Sustancias y Drogas</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Las adicciones a sustancias químicas pueden alterar el funcionamiento del cerebro y crear dependencia física y psicológica.</p>
+                <button class="add-content-btn">Leer más</button>
+            </div>
+            
+            <div class="addiction-card reveal">
+                <div class="card-icon">🍺</div>
+                <h3>Alcohol</h3>
+                <p>El alcoholismo es una enfermedad crónica que afecta a personas de todas las edades. A pesar de su legalidad, puede generar graves problemas de salud y sociales.</p>
+                <button class="add-content-btn">Leer más</button>
+            </div>
+            
+            <div class="addiction-card reveal">
+                <div class="card-icon">📱</div>
+                <h3>Tecnología y Redes Sociales</h3>
+                <p>La dependencia de dispositivos digitales y redes sociales es una problemática moderna que afecta especialmente a jóvenes, generando ansiedad y aislamiento social.</p>
+                <button class="add-content-btn">Leer más</button>
+            </div>
+            
+            <div class="addiction-card reveal">
+                <div class="card-icon">🎮</div>
+                <h3>Videojuegos</h3>
+                <p>La adicción a los videojuegos puede interferir con la vida diaria, afectando el rendimiento académico, las relaciones personales y la salud física y mental.</p>
+                <button class="add-content-btn">Leer más</button>
+            </div>
+            
+            <div class="addiction-card reveal">
+                <div class="card-icon">🎰</div>
+                <h3>Juego y Apuestas</h3>
+                <p>La ludopatía es una adicción conductual que puede llevar a graves problemas financieros, familiares y emocionales. No requiere sustancias para ser devastadora.</p>
+                <button class="add-content-btn">Leer más</button>
+            </div>
+            
+            <div class="addiction-card reveal">
+                <div class="card-icon">🛍️</div>
+                <h3>Compras Compulsivas</h3>
+                <p>La adicción a las compras genera un ciclo de gratificación temporal seguido de culpa y problemas económicos. Es una conducta que requiere atención profesional.</p>
+                <button class="add-content-btn">Leer más</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <section id="estadisticas">
+        <div class="section-header reveal">
+            <span class="section-tag">Datos</span>
+            <h2>Estadísticas Importantes</h2>
+            <p>Los números revelan la magnitud del problema de las adicciones a nivel global.</p>
+        </div>
+        
+        <div class="stats-container reveal">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">280M</div>
+                    <div class="stat-label">Personas afectadas</div>
+                    <div class="stat-description">Aproximadamente en el mundo</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">Jóvenes en riesgo</div>
+                    <div class="stat-description">Entre 15-29 años</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Son prevenibles</div>
+                    <div class="stat-description">Con información adecuada</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; padding: 2rem; background: var(--light-bg); border-radius: 16px;" class="reveal">
+            <h3 style="font-family: 'Epilogue', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary-dark);">💡 Espacio para más estadísticas</h3>
+            <p style="color: var(--text-medium); line-height: 1.8;">
+                Aquí puedes agregar estadísticas específicas sobre tu región, estudios recientes, datos demográficos, tendencias, comparativas internacionales, etc. Cada dato ayuda a crear mayor conciencia sobre la importancia de la prevención.
+            </p>
+        </div>
+    </section>
+
+    <!-- Información Preventiva -->
+    <section id="prevencion">
+        <div class="section-header reveal">
+            <span class="section-tag">Acción</span>
+            <h2>Información Preventiva</h2>
+            <p>La prevención es la herramienta más poderosa contra las adicciones.</p>
+        </div>
+        
+        <div class="prevention-content">
+            <div class="prevention-text">
+                <div class="prevention-item reveal">
+                    <h3>Educación temprana</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. La educación desde edades tempranas sobre los riesgos y consecuencias de las adicciones es fundamental. Crear espacios de diálogo abierto y honesto con los jóvenes.</p>
+                </div>
+                
+                <div class="prevention-item reveal">
+                    <h3>Factores de riesgo</h3>
+                    <p>Identificar los factores de riesgo como el estrés, la presión social, problemas familiares o baja autoestima puede ayudar a prevenir el desarrollo de adicciones. La detección temprana es clave.</p>
+                </div>
+                
+                <div class="prevention-item reveal">
+                    <h3>Fortalecimiento personal</h3>
+                    <p>Desarrollar habilidades sociales, autoestima, capacidad de toma de decisiones y manejo del estrés son factores protectores que ayudan a prevenir conductas adictivas.</p>
+                </div>
+            </div>
+            
+            <div class="prevention-visual reveal">
+                <div class="icon">🛡️</div>
+                <h4>Prevenir es proteger</h4>
+                <p style="color: var(--text-medium); margin-top: 1rem;">La información correcta en el momento adecuado puede cambiar vidas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recursos y Videos -->
+    <section id="recursos">
+        <div class="section-header reveal">
+            <span class="section-tag">Recursos</span>
+            <h2>Videos y Material Educativo</h2>
+            <p>Contenido multimedia para profundizar en el tema de prevención de adicciones.</p>
+        </div>
+        
+        <div class="resources-grid">
+            <div class="resource-card reveal">
+                <div class="video-placeholder">📹</div>
+                <div class="resource-content">
+                    <h3>Video de ejemplo 1</h3>
+                    <p>Descripción del video educativo sobre prevención de adicciones. Aquí podrás agregar el embed de YouTube o Vimeo.</p>
+                    <a href="#" class="resource-link">Ver video →</a>
+                </div>
+            </div>
+            
+            <div class="resource-card reveal">
+                <div class="video-placeholder">📹</div>
+                <div class="resource-content">
+                    <h3>Video de ejemplo 2</h3>
+                    <p>Testimonios, expertos, o documentales sobre el impacto de las adicciones en la sociedad actual.</p>
+                    <a href="#" class="resource-link">Ver video →</a>
+                </div>
+            </div>
+            
+            <div class="resource-card reveal">
+                <div class="video-placeholder">📹</div>
+                <div class="resource-content">
+                    <h3>Video de ejemplo 3</h3>
+                    <p>Material complementario para comprender mejor las estrategias de prevención y tratamiento.</p>
+                    <a href="#" class="resource-link">Ver video →</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 3rem; padding: 2.5rem; background: var(--gradient-1); border-radius: 20px; color: white; text-align: center;" class="reveal">
+            <h3 style="font-family: 'Epilogue', sans-serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">¿Necesitas ayuda?</h3>
+            <p style="margin-bottom: 1.5rem; opacity: 0.9;">Si tú o alguien que conoces está luchando contra una adicción, no estás solo. Existen recursos y profesionales listos para ayudar.</p>
+            <a href="#" style="display: inline-block; padding: 1rem 2rem; background: white; color: var(--primary-blue); border-radius: 50px; text-decoration: none; font-weight: 600;">Buscar ayuda profesional</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="color: white; margin-bottom: 1rem;">Prevención<span style="color: var(--accent-teal);">+</span></div>
+            <p>Proyecto escolar sobre prevención de adicciones</p>
+            <p style="opacity: 0.6; font-size: 0.9rem;">La información proporcionada es con fines educativos</p>
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#tipos">Tipos</a>
+                <a href="#estadisticas">Estadísticas</a>
+                <a href="#recursos">Recursos</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.5; font-size: 0.85rem;">© 2024 - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function revealOnScroll() {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 100;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
