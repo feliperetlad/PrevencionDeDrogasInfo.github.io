@@ -1,804 +1,1000 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sustancias Narcóticas - Información Educativa</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-dark: #1a2332;
-            --primary-blue: #2d5a7b;
-            --accent-teal: #3aa89e;
-            --accent-coral: #ff6b6b;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --text-dark: #1a1a1a;
-            --text-medium: #4a5568;
-            --border-color: #e2e8f0;
-            --gradient-1: linear-gradient(135deg, #2d5a7b 0%, #3aa89e 100%);
-            --gradient-2: linear-gradient(135deg, #1a2332 0%, #2d5a7b 100%);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-dark);
-            line-height: 1.7;
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-        
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            letter-spacing: -0.5px;
-        }
-        
-        .logo span {
-            color: var(--accent-teal);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-medium);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-teal);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary-dark);
-        }
-        
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            min-height: 70vh;
-            background: var(--gradient-2);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(58, 168, 158, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            color: var(--white);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1.5px;
-            animation: fadeInUp 0.8s ease-out;
-        }
-        
-        .hero h1 .highlight {
-            color: var(--accent-teal);
-        }
-        
-        .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.25rem);
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 700px;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-        
-        .back-link {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-        
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--accent-teal);
-            transform: translateY(-2px);
-        }
-        
-        /* Sections */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-tag {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: var(--light-bg);
-            color: var(--accent-teal);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 50px;
-            margin-bottom: 1rem;
-        }
-        
-        .section-header h2 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
-        
-        .section-header p {
-            font-size: 1.15rem;
-            color: var(--text-medium);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Tipos de Sustancias Grid */
-        .substances-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .substance-card {
-            background: var(--white);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .substance-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        
-        .substance-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-teal);
-        }
-        
-        .substance-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .substance-card h3 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-        }
-        
-        .substance-card p {
-            color: var(--text-medium);
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-        }
-        
-        .effects-list {
-            margin-top: 1rem;
-            padding-left: 1.2rem;
-        }
-        
-        .effects-list li {
-            color: var(--text-medium);
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
-        /* Warning Box */
-        .warning-box {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            border-radius: 20px;
-            padding: 3rem;
-            color: var(--white);
-            text-align: center;
-            margin: 4rem 0;
-        }
-        
-        .warning-box h3 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .warning-box p {
-            font-size: 1.15rem;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        /* Info Cards */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .info-card {
-            background: var(--light-bg);
-            border-radius: 16px;
-            padding: 2.5rem;
-        }
-        
-        .info-card h3 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .info-card h3 span {
-            font-size: 2rem;
-        }
-        
-        .info-card p {
-            color: var(--text-medium);
-            line-height: 1.8;
-        }
-        
-        .info-card ul {
-            margin-top: 1rem;
-            padding-left: 1.5rem;
-        }
-        
-        .info-card li {
-            color: var(--text-medium);
-            margin-bottom: 0.8rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--primary-dark);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 3rem 2rem 2rem;
-            margin-top: 4rem;
-        }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .footer-content p {
-            margin-bottom: 1rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent-teal);
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sustancias Narcóticas - Información Educativa</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --primary-dark: #1a2332;
+                --primary-blue: #2d5a7b;
+                --accent-teal: #3aa89e;
+                --accent-coral: #ff6b6b;
+                --light-bg: #f8f9fa;
+                --white: #ffffff;
+                --text-dark: #1a1a1a;
+                --text-medium: #4a5568;
+                --border-color: #e2e8f0;
+                --gradient-1: linear-gradient(135deg, #2d5a7b 0%, #3aa89e 100%);
+                --gradient-2: linear-gradient(135deg, #1a2332 0%, #2d5a7b 100%);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "Work Sans",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    sans-serif;
+                color: var(--text-dark);
+                line-height: 1.7;
+                background-color: var(--white);
+                overflow-x: hidden;
+            }
+
+            /* Header & Navigation */
+            header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+
+            header.scrolled {
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            nav {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 1.2rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: var(--primary-dark);
+                letter-spacing: -0.5px;
+            }
+
+            .logo span {
+                color: var(--accent-teal);
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--text-medium);
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: color 0.3s ease;
+                position: relative;
+            }
+
+            .nav-links a::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--accent-teal);
+                transition: width 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                color: var(--primary-blue);
+            }
+
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--primary-dark);
+            }
+
+            /* Hero Section */
+            .hero {
+                margin-top: 80px;
+                min-height: 70vh;
+                background: var(--gradient-2);
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image:
+                    radial-gradient(
+                        circle at 20% 50%,
+                        rgba(58, 168, 158, 0.1) 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 80% 80%,
+                        rgba(255, 107, 107, 0.08) 0%,
+                        transparent 50%
+                    );
+                pointer-events: none;
+            }
+
+            .hero-content {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 4rem 2rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero h1 {
+                font-family: "Epilogue", sans-serif;
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 800;
+                color: var(--white);
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+                letter-spacing: -1.5px;
+                animation: fadeInUp 0.8s ease-out;
+            }
+
+            .hero h1 .highlight {
+                color: var(--accent-teal);
+            }
+
+            .hero p {
+                font-size: clamp(1.1rem, 2vw, 1.25rem);
+                color: rgba(255, 255, 255, 0.9);
+                max-width: 700px;
+                margin-bottom: 2rem;
+                animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            }
+
+            .back-link {
+                display: inline-block;
+                padding: 0.9rem 2rem;
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--white);
+                text-decoration: none;
+                font-weight: 600;
+                border-radius: 50px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                transition: all 0.3s ease;
+                animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            }
+
+            .back-link:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: var(--accent-teal);
+                transform: translateY(-2px);
+            }
+
+            /* Sections */
+            section {
+                padding: 5rem 2rem;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-tag {
+                display: inline-block;
+                padding: 0.5rem 1.2rem;
+                background: var(--light-bg);
+                color: var(--accent-teal);
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border-radius: 50px;
+                margin-bottom: 1rem;
+            }
+
+            .section-header h2 {
+                font-family: "Epilogue", sans-serif;
+                font-size: clamp(2rem, 4vw, 2.8rem);
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 1rem;
+                letter-spacing: -0.5px;
+            }
+
+            .section-header p {
+                font-size: 1.15rem;
+                color: var(--text-medium);
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            /* Tipos de Sustancias Grid */
+            .substances-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .substance-card {
+                background: var(--white);
+                border: 2px solid var(--border-color);
+                border-radius: 16px;
+                padding: 2rem;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .substance-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: var(--gradient-1);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s ease;
+            }
+
+            .substance-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+                border-color: var(--accent-teal);
+            }
+
+            .substance-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                background: var(--gradient-1);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .substance-card h3 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 1rem;
+            }
+
+            .substance-card p {
+                color: var(--text-medium);
+                line-height: 1.7;
+                margin-bottom: 0.8rem;
+            }
+
+            .effects-list {
+                margin-top: 1rem;
+                padding-left: 1.2rem;
+            }
+
+            .effects-list li {
+                color: var(--text-medium);
+                margin-bottom: 0.5rem;
+                font-size: 0.95rem;
+            }
+
+            /* Warning Box */
+            .warning-box {
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+                border-radius: 20px;
+                padding: 3rem;
+                color: var(--white);
+                text-align: center;
+                margin: 4rem 0;
+            }
+
+            .warning-box h3 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            .warning-box p {
+                font-size: 1.15rem;
+                opacity: 0.95;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            /* Info Cards */
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .info-card {
+                background: var(--light-bg);
+                border-radius: 16px;
+                padding: 2.5rem;
+            }
+
+            .info-card h3 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            .info-card h3 span {
+                font-size: 2rem;
+            }
+
+            .info-card p {
+                color: var(--text-medium);
+                line-height: 1.8;
+            }
+
+            .info-card ul {
+                margin-top: 1rem;
+                padding-left: 1.5rem;
+            }
+
+            .info-card li {
+                color: var(--text-medium);
+                margin-bottom: 0.8rem;
+            }
+
+            /* Footer */
+            footer {
+                background: var(--primary-dark);
+                color: rgba(255, 255, 255, 0.8);
+                padding: 3rem 2rem 2rem;
+                margin-top: 4rem;
+            }
+
+            .footer-content {
+                max-width: 1400px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .footer-content p {
+                margin-bottom: 1rem;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 1.5rem;
+            }
+
+            .footer-links a {
+                color: rgba(255, 255, 255, 0.6);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .footer-links a:hover {
+                color: var(--accent-teal);
+            }
+
+            /* Animations */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .menu-toggle {
+                    display: block;
+                }
+
+                .nav-links {
+                    position: fixed;
+                    top: 80px;
+                    left: -100%;
+                    width: 100%;
+                    height: calc(100vh - 80px);
+                    background: var(--white);
+                    flex-direction: column;
+                    padding: 2rem;
+                    gap: 1.5rem;
+                    transition: left 0.3s ease;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                }
+
+                .nav-links.active {
+                    left: 0;
+                }
+
+                section {
+                    padding: 3rem 1.5rem;
+                }
+
+                .substances-grid,
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            .reveal {
                 opacity: 0;
                 transform: translateY(30px);
+                transition: all 0.6s ease-out;
             }
-            to {
+
+            .reveal.active {
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--white);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                transition: left 0.3s ease;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            section {
-                padding: 3rem 1.5rem;
-            }
-            
-            .substances-grid,
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header id="header">
-        <nav>
-            <div class="logo">Prevención<span>+</span></div>
-            <button class="menu-toggle" id="menuToggle">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#tipos">Tipos de Sustancias</a></li>
-                <li><a href="#efectos">Efectos y Riesgos</a></li>
-                <li><a href="#prevencion">Prevención</a></li>
-            </ul>
-        </nav>
-    </header>
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="header">
+            <nav>
+                <div class="logo">Prevención<span>+</span></div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#tipos">Tipos de Sustancias</a></li>
+                    <li><a href="#efectos">Efectos y Riesgos</a></li>
+                    <li><a href="#prevencion">Prevención</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Sustancias <span class="highlight">Narcóticas</span></h1>
-            <p>Información educativa sobre sustancias narcóticas, sus efectos, riesgos y la importancia de la prevención desde una perspectiva científica y de salud pública.</p>
-            <a href="index.html" class="back-link">← Volver a inicio</a>
-        </div>
-    </section>
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <h1>Sustancias <span class="highlight">Narcóticas</span></h1>
+                <p>
+                    Información educativa sobre sustancias narcóticas, sus
+                    efectos, riesgos y la importancia de la prevención desde una
+                    perspectiva científica y de salud pública.
+                </p>
+                <a href="index.html" class="back-link">← Volver a inicio</a>
+            </div>
+        </section>
 
-    <!-- Tipos de Sustancias -->
-    <section id="tipos">
-        <div class="section-header reveal">
-            <span class="section-tag">Clasificación</span>
-            <h2>Tipos de Sustancias Narcóticas</h2>
-            <p>Las sustancias narcóticas se clasifican según su origen, composición química y efectos en el sistema nervioso central.</p>
-        </div>
-        
-        <div class="substances-grid">
-            <div class="substance-card reveal">
-                <div class="card-icon">🌿</div>
-                <h3>Opiáceos Naturales</h3>
-                <p>Derivados directamente de la planta de amapola (Papaver somniferum).</p>
-                <ul class="effects-list">
-                    <li><strong>Morfina:</strong> Analgésico potente usado médicamente</li>
-                    <li><strong>Codeína:</strong> Tratamiento para dolor moderado y tos</li>
-                    <li><strong>Opio:</strong> Sustancia base de donde se extraen otros opiáceos</li>
-                </ul>
+        <!-- Tipos de Sustancias -->
+        <section id="tipos">
+            <div class="section-header reveal">
+                <span class="section-tag">Clasificación</span>
+                <h2>Tipos de Sustancias Narcóticas</h2>
+                <p>
+                    Las sustancias narcóticas se clasifican según su origen,
+                    composición química y efectos en el sistema nervioso
+                    central.
+                </p>
             </div>
-            
-            <div class="substance-card reveal">
-                <div class="card-icon">⚗️</div>
-                <h3>Opioides Sintéticos</h3>
-                <p>Creados en laboratorio para imitar los efectos de los opiáceos naturales.</p>
-                <ul class="effects-list">
-                    <li><strong>Fentanilo:</strong> 50-100 veces más potente que la morfina</li>
-                    <li><strong>Metadona:</strong> Usado en tratamientos de desintoxicación</li>
-                    <li><strong>Oxicodona:</strong> Analgésico recetado, alto potencial de abuso</li>
-                </ul>
-            </div>
-            
-            <div class="substance-card reveal">
-                <div class="card-icon">💊</div>
-                <h3>Heroína</h3>
-                <p>Derivado semisintético de la morfina, considerada una de las drogas más adictivas.</p>
-                <ul class="effects-list">
-                    <li>Cruza rápidamente la barrera hematoencefálica</li>
-                    <li>Genera dependencia física y psicológica severa</li>
-                    <li>Alto riesgo de sobredosis fatal</li>
-                </ul>
-            </div>
-            
-            <div class="substance-card reveal">
-                <div class="card-icon">🧪</div>
-                <h3>Cocaína</h3>
-                <p>Estimulante extraído de la planta de coca, afecta el sistema nervioso central.</p>
-                <ul class="effects-list">
-                    <li>Bloquea la recaptación de dopamina</li>
-                    <li>Efectos cardiovasculares peligrosos</li>
-                    <li>Riesgo de infarto y derrame cerebral</li>
-                </ul>
-            </div>
-            
-            <div class="substance-card reveal">
-                <div class="card-icon">🔬</div>
-                <h3>Anfetaminas</h3>
-                <p>Estimulantes sintéticos que aumentan la actividad del sistema nervioso central.</p>
-                <ul class="effects-list">
-                    <li><strong>Metanfetamina:</strong> Altamente adictiva, daño cerebral</li>
-                    <li><strong>MDMA (Éxtasis):</strong> Efectos estimulantes y alucinógenos</li>
-                    <li>Daño a neuronas productoras de serotonina</li>
-                </ul>
-            </div>
-            
-            <div class="substance-card reveal">
-                <div class="card-icon">🍄</div>
-                <h3>Alucinógenos</h3>
-                <p>Sustancias que alteran la percepción, el pensamiento y el estado de ánimo.</p>
-                <ul class="effects-list">
-                    <li><strong>LSD:</strong> Alucinógeno sintético potente</li>
-                    <li><strong>Psilocibina:</strong> Presente en hongos alucinógenos</li>
-                    <li>Riesgo de "malos viajes" y trastornos psicóticos</li>
-                </ul>
-            </div>
-        </div>
-    </section>
 
-    <!-- Warning Box -->
-    <div class="warning-box reveal" style="max-width: 1400px; margin: 0 auto;">
-        <h3>⚠️ Advertencia Importante</h3>
-        <p>El consumo de sustancias narcóticas sin prescripción médica es ilegal y extremadamente peligroso. Todas estas sustancias pueden causar dependencia, daños irreversibles a la salud y la muerte. Esta información es con fines exclusivamente educativos.</p>
-    </div>
-
-    <!-- Efectos y Riesgos -->
-    <section id="efectos">
-        <div class="section-header reveal">
-            <span class="section-tag">Consecuencias</span>
-            <h2>Efectos y Riesgos</h2>
-            <p>El consumo de sustancias narcóticas tiene consecuencias graves para la salud física, mental y social.</p>
-        </div>
-        
-        <div class="info-grid">
-            <div class="info-card reveal">
-                <h3><span>🧠</span>Efectos Neurológicos</h3>
-                <ul>
-                    <li>Alteración de neurotransmisores (dopamina, serotonina, endorfinas)</li>
-                    <li>Daño permanente a estructuras cerebrales</li>
-                    <li>Deterioro cognitivo y de la memoria</li>
-                    <li>Cambios en la toma de decisiones y control de impulsos</li>
-                    <li>Desarrollo de trastornos mentales (depresión, ansiedad, psicosis)</li>
-                </ul>
-            </div>
-            
-            <div class="info-card reveal">
-                <h3><span>❤️</span>Efectos Físicos</h3>
-                <ul>
-                    <li>Daño cardiovascular: infartos, arritmias, hipertensión</li>
-                    <li>Problemas respiratorios crónicos</li>
-                    <li>Daño hepático y renal</li>
-                    <li>Debilitamiento del sistema inmunológico</li>
-                    <li>Riesgo de enfermedades infecciosas (VIH, hepatitis)</li>
-                    <li>Deterioro dental y de tejidos blandos</li>
-                </ul>
-            </div>
-            
-            <div class="info-card reveal">
-                <h3><span>⚡</span>Dependencia</h3>
-                <ul>
-                    <li><strong>Tolerancia:</strong> Necesidad de mayores dosis para el mismo efecto</li>
-                    <li><strong>Dependencia física:</strong> El cuerpo requiere la sustancia para funcionar</li>
-                    <li><strong>Dependencia psicológica:</strong> Compulsión mental por consumir</li>
-                    <li><strong>Síndrome de abstinencia:</strong> Síntomas graves al dejar de consumir</li>
-                    <li>Ciclo de adicción difícil de romper sin ayuda profesional</li>
-                </ul>
-            </div>
-            
-            <div class="info-card reveal">
-                <h3><span>👥</span>Impacto Social</h3>
-                <ul>
-                    <li>Deterioro de relaciones familiares y personales</li>
-                    <li>Problemas laborales y académicos</li>
-                    <li>Dificultades económicas y deudas</li>
-                    <li>Aislamiento social y pérdida de redes de apoyo</li>
-                    <li>Problemas legales y antecedentes penales</li>
-                    <li>Estigmatización y discriminación</li>
-                </ul>
-            </div>
-            
-            <div class="info-card reveal">
-                <h3><span>💀</span>Riesgo de Sobredosis</h3>
-                <ul>
-                    <li>Depresión respiratoria que puede llevar a la muerte</li>
-                    <li>Paro cardíaco y convulsiones</li>
-                    <li>Imposibilidad de calcular dosis seguras (sustancias adulteradas)</li>
-                    <li>Combinación de sustancias multiplica el riesgo</li>
-                    <li>Daño cerebral por falta de oxígeno</li>
-                </ul>
-            </div>
-            
-            <div class="info-card reveal">
-                <h3><span>🔴</span>Señales de Alerta</h3>
-                <ul>
-                    <li>Cambios drásticos de comportamiento y personalidad</li>
-                    <li>Descuido de la higiene y apariencia personal</li>
-                    <li>Pérdida de interés en actividades antes disfrutadas</li>
-                    <li>Cambios en patrones de sueño y apetito</li>
-                    <li>Problemas financieros inexplicables</li>
-                    <li>Secretismo y mentiras frecuentes</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Prevención y Ayuda -->
-    <section id="prevencion">
-        <div class="section-header reveal">
-            <span class="section-tag">Soluciones</span>
-            <h2>Prevención y Recursos de Ayuda</h2>
-            <p>La prevención y el acceso a tratamiento son fundamentales para combatir el problema de las adicciones.</p>
-        </div>
-        
-        <div class="info-grid">
-            <div class="info-card reveal">
-                <h3><span>🛡️</span>Prevención Primaria</h3>
-                <p><strong>Antes de que ocurra el consumo:</strong></p>
-                <ul>
-                    <li>Educación temprana sobre drogas y sus riesgos</li>
-                    <li>Desarrollo de habilidades para la vida y toma de decisiones</li>
-                    <li>Fortalecimiento de la autoestima y valores personales</li>
-                    <li>Promoción de actividades recreativas saludables</li>
-                    <li>Comunicación abierta en familia y escuela</li>
-                </ul>
-            </div>
-            
-            <div class="info-card reveal">
-                <h3><span>🔍</span>Detección Temprana</h3>
-                <p><strong>Identificación de consumo experimental:</strong></p>
-                <ul>
-                    <li>Atención a cambios de comportamiento</li>
-                    <li>Diálogo sin juicios con personas en riesgo</li>
-                    <li>Intervención temprana de profesionales</li>
-                    <li>Evaluación médica y psicológica</li>
-                    <li>Apoyo familiar informado</li>
-                </ul>
-            </div>
-            
-            <div class="info-card reveal">
-                <h3><span>🏥</span>Tratamiento</h3>
-                <p><strong>Opciones para personas con adicción:</strong></p>
-                <ul>
-                    <li>Desintoxicación médica supervisada</li>
-                    <li>Terapia individual y grupal</li>
-                    <li>Programas de rehabilitación (ambulatorios e internamiento)</li>
-                    <li>Medicación asistida para reducir síntomas de abstinencia</li>
-                    <li>Grupos de apoyo (Narcóticos Anónimos, etc.)</li>
-                    <li>Seguimiento y prevención de recaídas</li>
-                </ul>
-            </div>
-        </div>
-        
-        <div style="margin-top: 3rem; padding: 2.5rem; background: var(--gradient-1); border-radius: 20px; color: white; text-align: center;" class="reveal">
-            <h3 style="font-family: 'Epilogue', sans-serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem;">📞 ¿Necesitas ayuda?</h3>
-            <p style="margin-bottom: 1.5rem; opacity: 0.9; font-size: 1.1rem;">Si tú o alguien que conoces está luchando contra una adicción, existen recursos profesionales disponibles.</p>
-            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem 1.5rem; border-radius: 10px; backdrop-filter: blur(10px);">
-                    <strong>Línea Nacional:</strong> 800-911-2000
+            <div class="substances-grid">
+                <div class="substance-card reveal">
+                    <div class="card-icon">🌿</div>
+                    <h3>Opiáceos Naturales</h3>
+                    <p>
+                        Derivados directamente de la planta de amapola (Papaver
+                        somniferum).
+                    </p>
+                    <ul class="effects-list">
+                        <li>
+                            <strong>Morfina:</strong> Analgésico potente usado
+                            médicamente
+                        </li>
+                        <li>
+                            <strong>Codeína:</strong> Tratamiento para dolor
+                            moderado y tos
+                        </li>
+                        <li>
+                            <strong>Opio:</strong> Sustancia base de donde se
+                            extraen otros opiáceos
+                        </li>
+                    </ul>
                 </div>
-                <div style="background: rgba(255, 255, 255, 0.1); padding: 1rem 1.5rem; border-radius: 10px; backdrop-filter: blur(10px);">
-                    <strong>Emergencias:</strong> 911
+
+                <div class="substance-card reveal">
+                    <div class="card-icon">⚗️</div>
+                    <h3>Opioides Sintéticos</h3>
+                    <p>
+                        Creados en laboratorio para imitar los efectos de los
+                        opiáceos naturales.
+                    </p>
+                    <ul class="effects-list">
+                        <li>
+                            <strong>Fentanilo:</strong> 50-100 veces más potente
+                            que la morfina
+                        </li>
+                        <li>
+                            <strong>Metadona:</strong> Usado en tratamientos de
+                            desintoxicación
+                        </li>
+                        <li>
+                            <strong>Oxicodona:</strong> Analgésico recetado,
+                            alto potencial de abuso
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="substance-card reveal">
+                    <div class="card-icon">💊</div>
+                    <h3>Heroína</h3>
+                    <p>
+                        Derivado semisintético de la morfina, considerada una de
+                        las drogas más adictivas.
+                    </p>
+                    <ul class="effects-list">
+                        <li>Cruza rápidamente la barrera hematoencefálica</li>
+                        <li>Genera dependencia física y psicológica severa</li>
+                        <li>Alto riesgo de sobredosis fatal</li>
+                    </ul>
+                </div>
+
+                <div class="substance-card reveal">
+                    <div class="card-icon">🧪</div>
+                    <h3>Cocaína</h3>
+                    <p>
+                        Estimulante extraído de la planta de coca, afecta el
+                        sistema nervioso central.
+                    </p>
+                    <ul class="effects-list">
+                        <li>Bloquea la recaptación de dopamina</li>
+                        <li>Efectos cardiovasculares peligrosos</li>
+                        <li>Riesgo de infarto y derrame cerebral</li>
+                    </ul>
+                </div>
+
+                <div class="substance-card reveal">
+                    <div class="card-icon">🔬</div>
+                    <h3>Anfetaminas</h3>
+                    <p>
+                        Estimulantes sintéticos que aumentan la actividad del
+                        sistema nervioso central.
+                    </p>
+                    <ul class="effects-list">
+                        <li>
+                            <strong>Metanfetamina:</strong> Altamente adictiva,
+                            daño cerebral
+                        </li>
+                        <li>
+                            <strong>MDMA (Éxtasis):</strong> Efectos
+                            estimulantes y alucinógenos
+                        </li>
+                        <li>Daño a neuronas productoras de serotonina</li>
+                    </ul>
+                </div>
+
+                <div class="substance-card reveal">
+                    <div class="card-icon">🍄</div>
+                    <h3>Alucinógenos</h3>
+                    <p>
+                        Sustancias que alteran la percepción, el pensamiento y
+                        el estado de ánimo.
+                    </p>
+                    <ul class="effects-list">
+                        <li>
+                            <strong>LSD:</strong> Alucinógeno sintético potente
+                        </li>
+                        <li>
+                            <strong>Psilocibina:</strong> Presente en hongos
+                            alucinógenos
+                        </li>
+                        <li>
+                            Riesgo de "malos viajes" y trastornos psicóticos
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo" style="color: white; margin-bottom: 1rem;">Prevención<span style="color: var(--accent-teal);">+</span></div>
-            <p>Información educativa sobre sustancias narcóticas</p>
-            <p style="opacity: 0.6; font-size: 0.9rem;">Esta información es con fines exclusivamente educativos y de prevención</p>
-            <div class="footer-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#tipos">Tipos</a>
-                <a href="#efectos">Efectos</a>
-                <a href="#prevencion">Prevención</a>
+        <!-- Warning Box -->
+        <div
+            class="warning-box reveal"
+            style="max-width: 1400px; margin: 0 auto"
+        >
+            <h3>⚠️ Advertencia Importante</h3>
+            <p>
+                El consumo de sustancias narcóticas sin prescripción médica es
+                ilegal y extremadamente peligroso. Todas estas sustancias pueden
+                causar dependencia, daños irreversibles a la salud y la muerte.
+                Esta información es con fines exclusivamente educativos.
+            </p>
+        </div>
+
+        <!-- Efectos y Riesgos -->
+        <section id="efectos">
+            <div class="section-header reveal">
+                <span class="section-tag">Consecuencias</span>
+                <h2>Efectos y Riesgos</h2>
+                <p>
+                    El consumo de sustancias narcóticas tiene consecuencias
+                    graves para la salud física, mental y social.
+                </p>
             </div>
-            <p style="margin-top: 2rem; opacity: 0.5; font-size: 0.85rem;">© 2024 - Proyecto Educativo</p>
-        </div>
-    </footer>
 
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.textContent = '☰';
+            <div class="info-grid">
+                <div class="info-card reveal">
+                    <h3><span>🧠</span>Efectos Neurológicos</h3>
+                    <ul>
+                        <li>
+                            Alteración de neurotransmisores (dopamina,
+                            serotonina, endorfinas)
+                        </li>
+                        <li>Daño permanente a estructuras cerebrales</li>
+                        <li>Deterioro cognitivo y de la memoria</li>
+                        <li>
+                            Cambios en la toma de decisiones y control de
+                            impulsos
+                        </li>
+                        <li>
+                            Desarrollo de trastornos mentales (depresión,
+                            ansiedad, psicosis)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card reveal">
+                    <h3><span>❤️</span>Efectos Físicos</h3>
+                    <ul>
+                        <li>
+                            Daño cardiovascular: infartos, arritmias,
+                            hipertensión
+                        </li>
+                        <li>Problemas respiratorios crónicos</li>
+                        <li>Daño hepático y renal</li>
+                        <li>Debilitamiento del sistema inmunológico</li>
+                        <li>
+                            Riesgo de enfermedades infecciosas (VIH, hepatitis)
+                        </li>
+                        <li>Deterioro dental y de tejidos blandos</li>
+                    </ul>
+                </div>
+
+                <div class="info-card reveal">
+                    <h3><span>⚡</span>Dependencia</h3>
+                    <ul>
+                        <li>
+                            <strong>Tolerancia:</strong> Necesidad de mayores
+                            dosis para el mismo efecto
+                        </li>
+                        <li>
+                            <strong>Dependencia física:</strong> El cuerpo
+                            requiere la sustancia para funcionar
+                        </li>
+                        <li>
+                            <strong>Dependencia psicológica:</strong> Compulsión
+                            mental por consumir
+                        </li>
+                        <li>
+                            <strong>Síndrome de abstinencia:</strong> Síntomas
+                            graves al dejar de consumir
+                        </li>
+                        <li>
+                            Ciclo de adicción difícil de romper sin ayuda
+                            profesional
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card reveal">
+                    <h3><span>👥</span>Impacto Social</h3>
+                    <ul>
+                        <li>Deterioro de relaciones familiares y personales</li>
+                        <li>Problemas laborales y académicos</li>
+                        <li>Dificultades económicas y deudas</li>
+                        <li>Aislamiento social y pérdida de redes de apoyo</li>
+                        <li>Problemas legales y antecedentes penales</li>
+                        <li>Estigmatización y discriminación</li>
+                    </ul>
+                </div>
+
+                <div class="info-card reveal">
+                    <h3><span>💀</span>Riesgo de Sobredosis</h3>
+                    <ul>
+                        <li>
+                            Depresión respiratoria que puede llevar a la muerte
+                        </li>
+                        <li>Paro cardíaco y convulsiones</li>
+                        <li>
+                            Imposibilidad de calcular dosis seguras (sustancias
+                            adulteradas)
+                        </li>
+                        <li>Combinación de sustancias multiplica el riesgo</li>
+                        <li>Daño cerebral por falta de oxígeno</li>
+                    </ul>
+                </div>
+
+                <div class="info-card reveal">
+                    <h3><span>🔴</span>Señales de Alerta</h3>
+                    <ul>
+                        <li>
+                            Cambios drásticos de comportamiento y personalidad
+                        </li>
+                        <li>Descuido de la higiene y apariencia personal</li>
+                        <li>
+                            Pérdida de interés en actividades antes disfrutadas
+                        </li>
+                        <li>Cambios en patrones de sueño y apetito</li>
+                        <li>Problemas financieros inexplicables</li>
+                        <li>Secretismo y mentiras frecuentes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prevención y Ayuda -->
+        <section id="prevencion">
+            <div class="section-header reveal">
+                <span class="section-tag">Soluciones</span>
+                <h2>Prevención y Recursos de Ayuda</h2>
+                <p>
+                    La prevención y el acceso a tratamiento son fundamentales
+                    para combatir el problema de las adicciones.
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card reveal">
+                    <h3><span>🛡️</span>Prevención Primaria</h3>
+                    <p><strong>Antes de que ocurra el consumo:</strong></p>
+                    <ul>
+                        <li>Educación temprana sobre drogas y sus riesgos</li>
+                        <li>
+                            Desarrollo de habilidades para la vida y toma de
+                            decisiones
+                        </li>
+                        <li>
+                            Fortalecimiento de la autoestima y valores
+                            personales
+                        </li>
+                        <li>Promoción de actividades recreativas saludables</li>
+                        <li>Comunicación abierta en familia y escuela</li>
+                    </ul>
+                </div>
+
+                <div class="info-card reveal">
+                    <h3><span>🔍</span>Detección Temprana</h3>
+                    <p>
+                        <strong>Identificación de consumo experimental:</strong>
+                    </p>
+                    <ul>
+                        <li>Atención a cambios de comportamiento</li>
+                        <li>Diálogo sin juicios con personas en riesgo</li>
+                        <li>Intervención temprana de profesionales</li>
+                        <li>Evaluación médica y psicológica</li>
+                        <li>Apoyo familiar informado</li>
+                    </ul>
+                </div>
+
+                <div class="info-card reveal">
+                    <h3><span>🏥</span>Tratamiento</h3>
+                    <p><strong>Opciones para personas con adicción:</strong></p>
+                    <ul>
+                        <li>Desintoxicación médica supervisada</li>
+                        <li>Terapia individual y grupal</li>
+                        <li>
+                            Programas de rehabilitación (ambulatorios e
+                            internamiento)
+                        </li>
+                        <li>
+                            Medicación asistida para reducir síntomas de
+                            abstinencia
+                        </li>
+                        <li>Grupos de apoyo (Narcóticos Anónimos, etc.)</li>
+                        <li>Seguimiento y prevención de recaídas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                style="
+                    margin-top: 3rem;
+                    padding: 2.5rem;
+                    background: var(--gradient-1);
+                    border-radius: 20px;
+                    color: white;
+                    text-align: center;
+                "
+                class="reveal"
+            >
+                <h3
+                    style="
+                        font-family: &quot;Epilogue&quot;, sans-serif;
+                        font-size: 1.8rem;
+                        font-weight: 700;
+                        margin-bottom: 1rem;
+                    "
+                >
+                    📞 ¿Necesitas ayuda?
+                </h3>
+                <p
+                    style="
+                        margin-bottom: 1.5rem;
+                        opacity: 0.9;
+                        font-size: 1.1rem;
+                    "
+                >
+                    Si tú o alguien que conoces está luchando contra una
+                    adicción, existen recursos profesionales disponibles.
+                </p>
+                <div
+                    style="
+                        display: flex;
+                        gap: 1.5rem;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    "
+                >
+                    <div
+                        style="
+                            background: rgba(255, 255, 255, 0.1);
+                            padding: 1rem 1.5rem;
+                            border-radius: 10px;
+                            backdrop-filter: blur(10px);
+                        "
+                    >
+                        <strong>Línea Nacional:</strong> 800-911-2000
+                    </div>
+                    <div
+                        style="
+                            background: rgba(255, 255, 255, 0.1);
+                            padding: 1rem 1.5rem;
+                            border-radius: 10px;
+                            backdrop-filter: blur(10px);
+                        "
+                    >
+                        <strong>Emergencias:</strong> 911
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="logo" style="color: white; margin-bottom: 1rem">
+                    Prevención<span style="color: var(--accent-teal)">+</span>
+                </div>
+                <p>Información educativa sobre sustancias narcóticas</p>
+                <p style="opacity: 0.6; font-size: 0.9rem">
+                    Esta información es con fines exclusivamente educativos y de
+                    prevención
+                </p>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#tipos">Tipos</a>
+                    <a href="#efectos">Efectos</a>
+                    <a href="#prevencion">Prevención</a>
+                </div>
+                <!--<p style="margin-top: 2rem; opacity: 0.5; font-size: 0.85rem;">© Proyecto Educativo</p>-->
+            </div>
+        </footer>
+
+        <script>
+            // Mobile menu toggle
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+
+            menuToggle.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+                menuToggle.textContent = navLinks.classList.contains("active")
+                    ? "✕"
+                    : "☰";
             });
-        });
-        
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll(".nav-links a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("active");
+                    menuToggle.textContent = "☰";
+                });
+            });
+
+            // Header scroll effect
+            const header = document.getElementById("header");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
+                }
+            });
+
+            // Scroll reveal animation
+            const reveals = document.querySelectorAll(".reveal");
+
+            function revealOnScroll() {
+                const windowHeight = window.innerHeight;
+                reveals.forEach((element) => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const revealPoint = 100;
+
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.classList.add("active");
+                    }
+                });
             }
-        });
-        
-        // Scroll reveal animation
-        const reveals = document.querySelectorAll('.reveal');
-        
-        function revealOnScroll() {
-            const windowHeight = window.innerHeight;
-            reveals.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const revealPoint = 100;
-                
-                if (elementTop < windowHeight - revealPoint) {
-                    element.classList.add('active');
-                }
+
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll(); // Initial check
+
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(
+                        this.getAttribute("href"),
+                    );
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: "smooth",
+                        });
+                    }
+                });
             });
-        }
-        
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
-        
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>

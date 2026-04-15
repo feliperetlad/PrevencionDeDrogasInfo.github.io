@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Compras Compulsivas - Información Educativa</title>
+        <title>Videojuegos - Información Educativa</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -296,15 +296,15 @@
                 margin-bottom: 0.6rem;
             }
 
-            /* Comparison Box */
-            .comparison-box {
+            /* Balance Box */
+            .balance-box {
                 background: var(--light-bg);
                 border-radius: 20px;
                 padding: 3rem 2rem;
                 margin: 3rem 0;
             }
 
-            .comparison-title {
+            .balance-title {
                 text-align: center;
                 font-family: "Epilogue", sans-serif;
                 font-size: 1.8rem;
@@ -313,7 +313,7 @@
                 color: var(--primary-dark);
             }
 
-            .comparison-grid {
+            .balance-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 2rem;
@@ -321,22 +321,22 @@
                 margin: 0 auto;
             }
 
-            .comparison-column {
+            .balance-column {
                 background: var(--white);
                 border-radius: 12px;
                 padding: 2rem;
                 border: 2px solid var(--border-color);
             }
 
-            .comparison-column.healthy {
+            .balance-column.healthy {
                 border-color: var(--accent-teal);
             }
 
-            .comparison-column.compulsive {
+            .balance-column.problematic {
                 border-color: var(--accent-coral);
             }
 
-            .comparison-column h4 {
+            .balance-column h4 {
                 font-family: "Epilogue", sans-serif;
                 font-size: 1.3rem;
                 font-weight: 700;
@@ -344,38 +344,38 @@
                 text-align: center;
             }
 
-            .comparison-column.healthy h4 {
+            .balance-column.healthy h4 {
                 color: var(--accent-teal);
             }
 
-            .comparison-column.compulsive h4 {
+            .balance-column.problematic h4 {
                 color: var(--accent-coral);
             }
 
-            .comparison-column ul {
+            .balance-column ul {
                 list-style: none;
                 padding: 0;
             }
 
-            .comparison-column li {
+            .balance-column li {
                 padding: 0.7rem 0;
                 border-bottom: 1px solid var(--border-color);
                 color: var(--text-medium);
             }
 
-            .comparison-column li:last-child {
+            .balance-column li:last-child {
                 border-bottom: none;
             }
 
-            .comparison-column.healthy li::before {
+            .balance-column.healthy li::before {
                 content: "✓ ";
                 color: var(--accent-teal);
                 font-weight: bold;
                 margin-right: 0.5rem;
             }
 
-            .comparison-column.compulsive li::before {
-                content: "✗ ";
+            .balance-column.problematic li::before {
+                content: "⚠ ";
                 color: var(--accent-coral);
                 font-weight: bold;
                 margin-right: 0.5rem;
@@ -401,51 +401,6 @@
             .warning-box p {
                 font-size: 1.1rem;
                 opacity: 0.95;
-            }
-
-            /* Triggers Box */
-            .triggers-container {
-                background: var(--gradient-1);
-                border-radius: 20px;
-                padding: 3rem 2rem;
-                color: var(--white);
-                margin: 3rem 0;
-            }
-
-            .triggers-title {
-                text-align: center;
-                font-family: "Epilogue", sans-serif;
-                font-size: 1.8rem;
-                font-weight: 700;
-                margin-bottom: 2.5rem;
-            }
-
-            .triggers-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5rem;
-            }
-
-            .trigger-item {
-                background: rgba(255, 255, 255, 0.15);
-                padding: 1.5rem;
-                border-radius: 12px;
-                backdrop-filter: blur(10px);
-            }
-
-            .trigger-item h4 {
-                font-family: "Epilogue", sans-serif;
-                font-size: 1.2rem;
-                font-weight: 700;
-                margin-bottom: 0.8rem;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            .trigger-item p {
-                opacity: 0.9;
-                font-size: 0.95rem;
             }
 
             /* Help Box */
@@ -538,11 +493,7 @@
                     grid-template-columns: 1fr;
                 }
 
-                .comparison-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .triggers-grid {
+                .balance-grid {
                     grid-template-columns: 1fr;
                 }
             }
@@ -560,9 +511,9 @@
                 <button class="menu-toggle" id="menuToggle">☰</button>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#que-es">Qué es</a></li>
-                    <li><a href="#diferencias">Diferencias</a></li>
+                    <li><a href="#cuando">Cuándo Preocuparse</a></li>
                     <li><a href="#efectos">Efectos</a></li>
+                    <li><a href="#balance">Balance Saludable</a></li>
                 </ul>
             </nav>
         </header>
@@ -570,121 +521,123 @@
         <!-- Hero Section -->
         <section class="hero" id="inicio">
             <div class="hero-content">
-                <h1><span class="highlight">Compras Compulsivas</span></h1>
+                <h1>
+                    Adicción a los <span class="highlight">Videojuegos</span>
+                </h1>
                 <p>
-                    La oniomanía o adicción a las compras es un trastorno del
-                    control de impulsos que puede llevar a graves problemas
-                    financieros, emocionales y sociales.
+                    Los videojuegos pueden ser entretenimiento saludable, pero
+                    cuando interfieren con la vida diaria se convierten en un
+                    problema serio reconocido por la OMS.
                 </p>
                 <a href="index.html" class="back-link">← Volver a inicio</a>
             </div>
         </section>
 
         <!-- Qué es -->
-        <section id="que-es">
+        <section id="cuando">
             <div class="section-header">
-                <span class="section-tag">Definición</span>
-                <h2>¿Qué son las Compras Compulsivas?</h2>
+                <span class="section-tag">Información Básica</span>
+                <h2>¿Cuándo se Convierte en Adicción?</h2>
                 <p>
-                    No se trata de disfrutar ir de compras, sino de una
-                    necesidad incontrolable de comprar que interfiere con la
-                    vida diaria.
+                    En 2018, la OMS reconoció el "trastorno por videojuegos"
+                    como una condición de salud mental.
                 </p>
             </div>
 
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><span>🧠</span>Características</h3>
+                    <h3><span>🎮</span>Criterios Diagnósticos</h3>
+                    <p>
+                        Según la OMS, requiere al menos 3 de estos síntomas
+                        durante 12 meses:
+                    </p>
                     <ul>
                         <li>
-                            Impulso irresistible de comprar, independientemente
-                            de la necesidad
+                            Pérdida de control sobre el tiempo y frecuencia de
+                            juego
                         </li>
                         <li>
-                            Sensación de euforia o alivio temporal al comprar
+                            Prioridad creciente del juego sobre otras
+                            actividades
                         </li>
                         <li>
-                            Sentimientos de culpa, vergüenza o arrepentimiento
-                            después
+                            Continuar jugando a pesar de consecuencias negativas
                         </li>
                         <li>
-                            Compras realizadas para manejar emociones negativas
-                        </li>
-                        <li>Ocultamiento de las compras a familiares</li>
-                        <li>
-                            Pérdida de control sobre el comportamiento de compra
+                            Deterioro significativo en áreas personal, familiar,
+                            social o académica
                         </li>
                     </ul>
                 </div>
 
                 <div class="info-card">
-                    <h3><span>📊</span>Datos Importantes</h3>
+                    <h3><span>📊</span>Datos Relevantes</h3>
                     <ul>
-                        <li>Afecta aproximadamente al 5-8% de la población</li>
-                        <li>Más común en mujeres (80-95% de los casos)</li>
-                        <li>Edad promedio de inicio: 18-30 años</li>
+                        <li>3-4% de jugadores desarrollan adicción</li>
                         <li>
-                            Frecuentemente coexiste con depresión o ansiedad
+                            Más común en hombres adolescentes y adultos jóvenes
                         </li>
                         <li>
-                            El e-commerce ha aumentado la accesibilidad y el
-                            riesgo
+                            Juegos multijugador en línea tienen mayor riesgo
+                            adictivo
                         </li>
-                        <li>Solo el 20% busca tratamiento profesional</li>
+                        <li>Promedio de 8-10 horas diarias en casos severos</li>
+                        <li>Edad de mayor riesgo: 12-25 años</li>
+                        <li>Puede coexistir con depresión y ansiedad social</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
-                    <h3><span>🎯</span>Factores de Riesgo</h3>
+                    <h3><span>🎯</span>Juegos de Alto Riesgo</h3>
+                    <p>Características que aumentan el potencial adictivo:</p>
                     <ul>
-                        <li>Baja autoestima y necesidad de aprobación</li>
-                        <li>
-                            Depresión, ansiedad o trastornos del estado de ánimo
-                        </li>
-                        <li>Problemas de control de impulsos</li>
-                        <li>Tendencias perfeccionistas</li>
-                        <li>
-                            Exposición constante a publicidad y redes sociales
-                        </li>
-                        <li>Acceso fácil a crédito y compras en línea</li>
-                        <li>Historial familiar de adicciones</li>
+                        <li>Multijugador en línea sin fin definido</li>
+                        <li>Sistemas de recompensas variables</li>
+                        <li>Elementos sociales (clanes, guilds)</li>
+                        <li>Eventos limitados por tiempo</li>
+                        <li>Progresión constante (niveles, rankings)</li>
+                        <li>Microtransacciones y loot boxes</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Diferencias -->
-        <section id="diferencias">
-            <div class="comparison-box">
-                <div class="comparison-title">
-                    Compra Normal vs. Compra Compulsiva
+        <!-- Balance Saludable vs Problemático -->
+        <section id="balance">
+            <div class="balance-box">
+                <div class="balance-title">
+                    Juego Saludable vs. Juego Problemático
                 </div>
-                <div class="comparison-grid">
-                    <div class="comparison-column healthy">
-                        <h4>Compra Saludable</h4>
+                <div class="balance-grid">
+                    <div class="balance-column healthy">
+                        <h4>Juego Saludable</h4>
                         <ul>
-                            <li>Se compra por necesidad o deseo planificado</li>
-                            <li>Hay control sobre el gasto</li>
-                            <li>Se respeta el presupuesto establecido</li>
-                            <li>La compra genera satisfacción duradera</li>
-                            <li>No interfiere con responsabilidades</li>
-                            <li>Se comparte abiertamente con otros</li>
-                            <li>Las compras se usan y disfrutan</li>
-                            <li>No genera culpa o vergüenza</li>
+                            <li>Tiempo limitado y planificado</li>
+                            <li>Se respetan horarios de sueño y comidas</li>
+                            <li>Mantiene vida social activa fuera del juego</li>
+                            <li>
+                                Cumple con responsabilidades escolares/laborales
+                            </li>
+                            <li>Practica actividad física regularmente</li>
+                            <li>
+                                Puede dejar de jugar sin frustración extrema
+                            </li>
+                            <li>
+                                Juego como una de varias actividades recreativas
+                            </li>
                         </ul>
                     </div>
 
-                    <div class="comparison-column compulsive">
-                        <h4>Compra Compulsiva</h4>
+                    <div class="balance-column problematic">
+                        <h4>Juego Problemático</h4>
                         <ul>
-                            <li>Impulso incontrolable, sin necesidad real</li>
-                            <li>Pérdida de control sobre el gasto</li>
-                            <li>Gasto excesivo, más allá de medios</li>
-                            <li>Alivio temporal seguido de culpa</li>
-                            <li>Interfiere con trabajo o relaciones</li>
-                            <li>Se oculta a familiares y amigos</li>
-                            <li>Productos sin usar, con etiquetas</li>
-                            <li>Remordimiento y vergüenza constante</li>
+                            <li>Pérdida de noción del tiempo al jugar</li>
+                            <li>Saltarse comidas o dormir poco por jugar</li>
+                            <li>Aislamiento social, solo amigos en línea</li>
+                            <li>Bajo rendimiento académico/laboral</li>
+                            <li>Sedentarismo y problemas de salud física</li>
+                            <li>Irritabilidad extrema cuando no puede jugar</li>
+                            <li>El juego es la única actividad placentera</li>
                         </ul>
                     </div>
                 </div>
@@ -693,210 +646,169 @@
 
         <!-- Warning Box -->
         <div class="warning-box">
-            <h3>⚠️ Ciclo Adictivo</h3>
+            <h3>⚠️ Señal de Alerta Crítica</h3>
             <p>
-                Las compras compulsivas siguen un patrón: tensión emocional →
-                impulso de comprar → compra → alivio temporal → culpa y
-                vergüenza → nueva tensión emocional. Este ciclo se auto-refuerza
-                y empeora con el tiempo.
+                Si una persona miente sobre cuánto tiempo juega, oculta que está
+                jugando, o se vuelve agresiva cuando se le interrumpe, son
+                señales claras de que el juego se ha convertido en un problema
+                que requiere atención profesional.
             </p>
-        </div>
-
-        <!-- Disparadores -->
-        <div class="triggers-container">
-            <div class="triggers-title">
-                Disparadores Comunes de Compras Compulsivas
-            </div>
-            <div class="triggers-grid">
-                <div class="trigger-item">
-                    <h4>😔 Emocionales</h4>
-                    <p>
-                        Tristeza, ansiedad, soledad, aburrimiento, estrés. La
-                        compra se usa como escape emocional.
-                    </p>
-                </div>
-
-                <div class="trigger-item">
-                    <h4>📱 Tecnológicos</h4>
-                    <p>
-                        Compras con un clic, notificaciones de ofertas,
-                        influencers, publicidad personalizada.
-                    </p>
-                </div>
-
-                <div class="trigger-item">
-                    <h4>💳 Financieros</h4>
-                    <p>
-                        Acceso fácil a crédito, programas de recompensas,
-                        financiamiento sin intereses.
-                    </p>
-                </div>
-
-                <div class="trigger-item">
-                    <h4>👥 Sociales</h4>
-                    <p>
-                        Presión de grupo, comparación en redes sociales,
-                        necesidad de estatus o pertenencia.
-                    </p>
-                </div>
-
-                <div class="trigger-item">
-                    <h4>🎉 Circunstanciales</h4>
-                    <p>
-                        Temporadas de rebajas, Black Friday, promociones "por
-                        tiempo limitado".
-                    </p>
-                </div>
-
-                <div class="trigger-item">
-                    <h4>🧬 Psicológicos</h4>
-                    <p>
-                        Búsqueda de gratificación instantánea, vacío
-                        existencial, baja autoestima.
-                    </p>
-                </div>
-            </div>
         </div>
 
         <!-- Efectos -->
         <section id="efectos">
             <div class="section-header">
                 <span class="section-tag">Consecuencias</span>
-                <h2>Efectos de las Compras Compulsivas</h2>
-                <p>El impacto va mucho más allá del aspecto financiero.</p>
+                <h2>Efectos de la Adicción a Videojuegos</h2>
+                <p>El impacto puede ser físico, mental, social y académico.</p>
             </div>
 
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><span>💰</span>Consecuencias Financieras</h3>
+                    <h3><span>🏥</span>Salud Física</h3>
                     <ul>
-                        <li>Deudas acumuladas de tarjetas de crédito</li>
-                        <li>Incapacidad de ahorrar dinero</li>
-                        <li>Préstamos para cubrir gastos básicos</li>
-                        <li>Quiebra personal o bancarrota</li>
-                        <li>Problemas legales por deudas</li>
-                        <li>Pérdida de patrimonio y propiedades</li>
-                        <li>Historial crediticio dañado</li>
+                        <li>
+                            Síndrome del túnel carpiano y lesiones por
+                            movimientos repetitivos
+                        </li>
+                        <li>
+                            Obesidad y problemas metabólicos por sedentarismo
+                        </li>
+                        <li>Trastornos del sueño e insomnio crónico</li>
+                        <li>Problemas de visión (fatiga ocular, miopía)</li>
+                        <li>Dolores de espalda, cuello y mala postura</li>
+                        <li>Higiene personal descuidada</li>
+                        <li>Dolores de cabeza frecuentes</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
-                    <h3><span>😟</span>Impacto Emocional</h3>
+                    <h3><span>🧠</span>Salud Mental</h3>
                     <ul>
-                        <li>Ansiedad y estrés constante</li>
-                        <li>Depresión y sentimientos de desesperanza</li>
-                        <li>Culpa y vergüenza intensas</li>
-                        <li>Baja autoestima agravada</li>
-                        <li>Pensamientos obsesivos sobre compras</li>
-                        <li>Vacío emocional que se intenta llenar</li>
-                        <li>Irritabilidad cuando no puede comprar</li>
+                        <li>Depresión y ansiedad</li>
+                        <li>Irritabilidad y agresividad</li>
+                        <li>Baja autoestima fuera del entorno de juego</li>
+                        <li>
+                            Dificultad para experimentar placer en otras
+                            actividades
+                        </li>
+                        <li>Pensamientos obsesivos sobre el juego</li>
+                        <li>Síntomas de abstinencia (nerviosismo, tristeza)</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
-                    <h3><span>👨‍👩‍👧</span>Relaciones Afectadas</h3>
+                    <h3><span>📚</span>Rendimiento Académico</h3>
                     <ul>
-                        <li>Mentiras y ocultamiento a la pareja</li>
-                        <li>Conflictos familiares por dinero</li>
-                        <li>Pérdida de confianza de seres queridos</li>
-                        <li>Divorcio o separaciones</li>
-                        <li>Aislamiento social por vergüenza</li>
-                        <li>Impacto en la estabilidad familiar</li>
+                        <li>Disminución de calificaciones</li>
+                        <li>Falta de concentración en clases</li>
+                        <li>No completar tareas o trabajos</li>
+                        <li>Ausentismo escolar</li>
+                        <li>Abandono de actividades extracurriculares</li>
+                        <li>Riesgo de deserción escolar</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
-                    <h3><span>🏠</span>Acumulación y Desorden</h3>
+                    <h3><span>👨‍👩‍👧</span>Relaciones Sociales</h3>
                     <ul>
-                        <li>Espacios llenos de productos sin usar</li>
-                        <li>Artículos con etiquetas y empaques originales</li>
-                        <li>Dificultad para deshacerse de cosas</li>
-                        <li>Caos y desorganización en el hogar</li>
-                        <li>Vergüenza de invitar personas a casa</li>
-                        <li>Desperdicio de recursos y espacio</li>
+                        <li>Aislamiento de familia y amigos</li>
+                        <li>Conflictos familiares constantes</li>
+                        <li>Pérdida de amistades del mundo real</li>
+                        <li>Dificultad para relacionarse cara a cara</li>
+                        <li>Preferencia por interacciones virtuales</li>
+                        <li>Habilidades sociales deterioradas</li>
                     </ul>
                 </div>
 
                 <div class="info-card">
-                    <h3><span>💼</span>Vida Laboral</h3>
+                    <h3><span>💰</span>Gasto Económico</h3>
                     <ul>
-                        <li>Distracciones durante horario de trabajo</li>
-                        <li>Compras en línea en la oficina</li>
-                        <li>Bajo rendimiento por preocupaciones financieras</li>
-                        <li>Necesidad de trabajar más para pagar deudas</li>
-                        <li>Conflictos por ausentismo (para ir de compras)</li>
+                        <li>Compras compulsivas dentro del juego</li>
+                        <li>Suscripciones múltiples</li>
+                        <li>Equipamiento costoso (PC, consolas, accesorios)</li>
+                        <li>Deudas por microtransacciones</li>
+                        <li>
+                            Uso no autorizado de tarjetas de crédito (menores)
+                        </li>
                     </ul>
                 </div>
 
                 <div class="info-card">
-                    <h3><span>🌍</span>Impacto Ambiental</h3>
+                    <h3><span>⏰</span>Gestión del Tiempo</h3>
                     <ul>
-                        <li>Consumo excesivo e insostenible</li>
-                        <li>Desperdicio de recursos naturales</li>
-                        <li>Contaminación por empaques y envíos</li>
-                        <li>Contribución a la cultura de "usar y desechar"</li>
-                        <li>Huella de carbono elevada</li>
+                        <li>Incapacidad para planificar actividades</li>
+                        <li>Procrastinación crónica</li>
+                        <li>Pérdida de sentido del tiempo</li>
+                        <li>Jugar durante la madrugada</li>
+                        <li>Faltar a compromisos importantes</li>
+                        <li>Todas las horas libres dedicadas a jugar</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Prevención y Tratamiento -->
+        <!-- Prevención y Ayuda -->
         <section>
             <div class="section-header">
                 <span class="section-tag">Soluciones</span>
                 <h2>Prevención y Tratamiento</h2>
                 <p>
-                    La recuperación es posible con el apoyo y las herramientas
-                    adecuadas.
+                    Establecer límites saludables desde el inicio es
+                    fundamental.
                 </p>
             </div>
 
             <div class="info-grid">
                 <div class="info-card">
-                    <h3><span>🛡️</span>Estrategias de Prevención</h3>
+                    <h3><span>🛡️</span>Prevención</h3>
                     <ul>
-                        <li>Establecer y seguir un presupuesto mensual</li>
-                        <li>Usar efectivo en lugar de tarjetas de crédito</li>
-                        <li>Desuscribirse de listas de correo de tiendas</li>
                         <li>
-                            Evitar centros comerciales sin propósito específico
+                            Establecer límites de tiempo diarios (1-2 horas
+                            máximo)
                         </li>
-                        <li>Regla de 24-48 horas antes de comprar</li>
-                        <li>Eliminar apps de compras del celular</li>
-                        <li>Limitar tiempo en redes sociales</li>
-                        <li>Buscar actividades alternativas gratificantes</li>
-                    </ul>
-                </div>
-
-                <div class="info-card">
-                    <h3><span>🔍</span>Señales de Alerta</h3>
-                    <ul>
-                        <li>Comprar cosas que no necesitas ni usarás</li>
-                        <li>Sentir euforia extrema al comprar</li>
-                        <li>Ocultar compras o mentir sobre gastos</li>
-                        <li>Comprar para sentirte mejor emocionalmente</li>
-                        <li>Sentir culpa o remordimiento después</li>
-                        <li>Problemas financieros recurrentes</li>
-                        <li>Conflictos con familia por compras</li>
-                        <li>Pensamientos obsesivos sobre comprar</li>
-                    </ul>
-                </div>
-
-                <div class="info-card">
-                    <h3><span>💚</span>Tratamiento Profesional</h3>
-                    <ul>
-                        <li>Terapia cognitivo-conductual (TCC)</li>
-                        <li>Terapia de grupo con otras personas</li>
+                        <li>No tener consolas o PC en la habitación</li>
+                        <li>Priorizar tareas antes de permitir jugar</li>
+                        <li>Fomentar deportes y actividades al aire libre</li>
+                        <li>Promover interacciones sociales presenciales</li>
+                        <li>Controles parentales en dispositivos</li>
+                        <li>Diversificar hobbies y actividades</li>
                         <li>
-                            Tratamiento de condiciones subyacentes (depresión,
+                            Diálogo abierto sobre el contenido de los juegos
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>🔴</span>Señales de Alerta</h3>
+                    <ul>
+                        <li>Jugar más de 4 horas diarias consistentemente</li>
+                        <li>Mentir sobre el tiempo de juego</li>
+                        <li>Reacciones violentas al limitar el juego</li>
+                        <li>Pérdida de interés en otras actividades</li>
+                        <li>Descuido de higiene personal</li>
+                        <li>Caída repentina en el rendimiento escolar</li>
+                        <li>Preferir jugar a salir con amigos</li>
+                        <li>Jugar para escapar de emociones negativas</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>💚</span>Tratamiento</h3>
+                    <ul>
+                        <li>
+                            Evaluación profesional por psicólogo especializado
+                        </li>
+                        <li>Terapia cognitivo-conductual</li>
+                        <li>Terapia familiar para mejorar comunicación</li>
+                        <li>Establecimiento gradual de límites</li>
+                        <li>
+                            Tratamiento de condiciones asociadas (depresión,
                             ansiedad)
                         </li>
-                        <li>Asesoría financiera profesional</li>
-                        <li>Grupos de apoyo (Deudores Anónimos)</li>
-                        <li>Mindfulness y manejo del estrés</li>
-                        <li>Desarrollo de hábitos saludables alternativos</li>
-                        <li>Trabajo en autoestima y valores personales</li>
+                        <li>Programas de desintoxicación digital</li>
+                        <li>Desarrollo de habilidades sociales</li>
+                        <li>Actividades alternativas estructuradas</li>
                     </ul>
                 </div>
             </div>
@@ -906,12 +818,13 @@
         <div class="help-box">
             <h3>📞 ¿Necesitas Ayuda?</h3>
             <p>
-                Si sientes que las compras están controlando tu vida, no estás
-                solo. Buscar ayuda es el primer paso hacia la recuperación.
+                Si el juego está afectando tu vida o la de alguien cercano,
+                buscar ayuda profesional puede hacer una gran diferencia. La
+                adicción a videojuegos es un trastorno reconocido y tratable.
             </p>
             <p style="margin-top: 1.5rem; font-size: 0.95rem">
-                Contacta a un terapeuta especializado en adicciones conductuales
-                o únete a grupos de apoyo como Deudores Anónimos.
+                Consulta con un psicólogo especializado en adicciones
+                conductuales o trastornos del control de impulsos.
             </p>
         </div>
 
@@ -921,17 +834,20 @@
                 <div class="logo" style="color: white; margin-bottom: 1rem">
                     Prevención<span style="color: var(--accent-teal)">+</span>
                 </div>
-                <p>Información educativa sobre compras compulsivas</p>
+                <p>Información educativa sobre videojuegos y uso saludable</p>
                 <p style="opacity: 0.6; font-size: 0.9rem">
-                    Comprar debe ser una decisión consciente, no una compulsión
+                    Los videojuegos son entretenimiento, no deben reemplazar la
+                    vida real
                 </p>
                 <div class="footer-links">
                     <a href="#inicio">Inicio</a>
-                    <a href="#que-es">Qué es</a>
-                    <a href="#diferencias">Diferencias</a>
+                    <a href="#cuando">Cuándo Preocuparse</a>
                     <a href="#efectos">Efectos</a>
+                    <a href="#balance">Balance</a>
                 </div>
-                <!--<p style="margin-top: 2rem; opacity: 0.5; font-size: 0.85rem;">©Proyecto Educativo</p>-->
+                <p style="margin-top: 2rem; opacity: 0.5; font-size: 0.85rem">
+                    © Proyecto Educativo
+                </p>
             </div>
         </footer>
 

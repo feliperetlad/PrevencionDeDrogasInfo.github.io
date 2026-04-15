@@ -1,942 +1,1033 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juegos y Apuestas - Información Educativa</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-dark: #1a2332;
-            --primary-blue: #2d5a7b;
-            --accent-teal: #3aa89e;
-            --accent-coral: #ff6b6b;
-            --light-bg: #f8f9fa;
-            --white: #ffffff;
-            --text-dark: #1a1a1a;
-            --text-medium: #4a5568;
-            --border-color: #e2e8f0;
-            --gradient-1: linear-gradient(135deg, #2d5a7b 0%, #3aa89e 100%);
-            --gradient-2: linear-gradient(135deg, #1a2332 0%, #2d5a7b 100%);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-dark);
-            line-height: 1.7;
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-        
-        /* Header & Navigation */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-dark);
-            letter-spacing: -0.5px;
-        }
-        
-        .logo span {
-            color: var(--accent-teal);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-medium);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-teal);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary-dark);
-        }
-        
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            min-height: 65vh;
-            background: var(--gradient-2);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(58, 168, 158, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 107, 107, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            color: var(--white);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1.5px;
-        }
-        
-        .hero h1 .highlight {
-            color: var(--accent-teal);
-        }
-        
-        .hero p {
-            font-size: clamp(1.1rem, 2vw, 1.25rem);
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 700px;
-            margin-bottom: 2rem;
-        }
-        
-        .back-link {
-            display: inline-block;
-            padding: 0.9rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--accent-teal);
-            transform: translateY(-2px);
-        }
-        
-        /* Sections */
-        section {
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-tag {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: var(--light-bg);
-            color: var(--accent-teal);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 50px;
-            margin-bottom: 1rem;
-        }
-        
-        .section-header h2 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
-        
-        .section-header p {
-            font-size: 1.1rem;
-            color: var(--text-medium);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Types Grid */
-        .types-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .type-card {
-            background: var(--white);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .type-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-        
-        .type-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-teal);
-        }
-        
-        .type-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .type-card h3 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-        }
-        
-        .type-card p {
-            color: var(--text-medium);
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-        }
-        
-        .type-card ul {
-            margin-top: 0.8rem;
-            padding-left: 1.3rem;
-        }
-        
-        .type-card li {
-            color: var(--text-medium);
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-        
-        /* Info Grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .info-card {
-            background: var(--white);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-teal);
-        }
-        
-        .info-card h3 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .info-card h3 span {
-            font-size: 2rem;
-        }
-        
-        .info-card p, .info-card li {
-            color: var(--text-medium);
-            line-height: 1.8;
-        }
-        
-        .info-card ul {
-            margin-top: 0.8rem;
-            padding-left: 1.3rem;
-        }
-        
-        .info-card li {
-            margin-bottom: 0.6rem;
-        }
-        
-        /* Cycle Diagram */
-        .cycle-container {
-            background: var(--light-bg);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin: 3rem 0;
-        }
-        
-        .cycle-title {
-            text-align: center;
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--primary-dark);
-        }
-        
-        .cycle-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .cycle-step {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            border: 2px solid var(--border-color);
-            position: relative;
-        }
-        
-        .cycle-step::after {
-            content: '→';
-            position: absolute;
-            right: -2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-            color: var(--accent-teal);
-            font-weight: bold;
-        }
-        
-        .cycle-step:last-child::after {
-            content: '↻';
-            right: auto;
-            left: 50%;
-            top: auto;
-            bottom: -3rem;
-            transform: translateX(-50%);
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-1);
-            color: white;
-            border-radius: 50%;
-            line-height: 40px;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-        
-        .cycle-step h4 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-        }
-        
-        .cycle-step p {
-            color: var(--text-medium);
-            font-size: 0.9rem;
-        }
-        
-        /* Warning Box */
-        .warning-box {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            border-radius: 20px;
-            padding: 2.5rem;
-            color: var(--white);
-            text-align: center;
-            margin: 3rem 0;
-        }
-        
-        .warning-box h3 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .warning-box p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-        
-        /* Help Box */
-        .help-box {
-            background: var(--gradient-1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            color: var(--white);
-            text-align: center;
-            margin: 3rem 0;
-        }
-        
-        .help-box h3 {
-            font-family: 'Epilogue', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .help-box p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            margin-bottom: 1.5rem;
-        }
-        
-        .help-numbers {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .help-number {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--primary-dark);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 3rem 2rem 2rem;
-            margin-top: 4rem;
-        }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .footer-content p {
-            margin-bottom: 1rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent-teal);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Juegos y Apuestas - Información Educativa</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --primary-dark: #1a2332;
+                --primary-blue: #2d5a7b;
+                --accent-teal: #3aa89e;
+                --accent-coral: #ff6b6b;
+                --light-bg: #f8f9fa;
+                --white: #ffffff;
+                --text-dark: #1a1a1a;
+                --text-medium: #4a5568;
+                --border-color: #e2e8f0;
+                --gradient-1: linear-gradient(135deg, #2d5a7b 0%, #3aa89e 100%);
+                --gradient-2: linear-gradient(135deg, #1a2332 0%, #2d5a7b 100%);
             }
-            
-            .nav-links {
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "Work Sans",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    sans-serif;
+                color: var(--text-dark);
+                line-height: 1.7;
+                background-color: var(--white);
+                overflow-x: hidden;
+            }
+
+            /* Header & Navigation */
+            header {
                 position: fixed;
-                top: 80px;
-                left: -100%;
+                top: 0;
                 width: 100%;
-                height: calc(100vh - 80px);
-                background: var(--white);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                transition: left 0.3s ease;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
             }
-            
-            .nav-links.active {
+
+            header.scrolled {
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            nav {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 1.2rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .logo {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: var(--primary-dark);
+                letter-spacing: -0.5px;
+            }
+
+            .logo span {
+                color: var(--accent-teal);
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--text-medium);
+                font-weight: 500;
+                font-size: 0.95rem;
+                transition: color 0.3s ease;
+                position: relative;
+            }
+
+            .nav-links a::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
                 left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--accent-teal);
+                transition: width 0.3s ease;
             }
-            
+
+            .nav-links a:hover {
+                color: var(--primary-blue);
+            }
+
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+
+            .menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--primary-dark);
+            }
+
+            /* Hero Section */
+            .hero {
+                margin-top: 80px;
+                min-height: 65vh;
+                background: var(--gradient-2);
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+            }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image:
+                    radial-gradient(
+                        circle at 20% 50%,
+                        rgba(58, 168, 158, 0.1) 0%,
+                        transparent 50%
+                    ),
+                    radial-gradient(
+                        circle at 80% 80%,
+                        rgba(255, 107, 107, 0.08) 0%,
+                        transparent 50%
+                    );
+                pointer-events: none;
+            }
+
+            .hero-content {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 4rem 2rem;
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero h1 {
+                font-family: "Epilogue", sans-serif;
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 800;
+                color: var(--white);
+                line-height: 1.1;
+                margin-bottom: 1.5rem;
+                letter-spacing: -1.5px;
+            }
+
+            .hero h1 .highlight {
+                color: var(--accent-teal);
+            }
+
+            .hero p {
+                font-size: clamp(1.1rem, 2vw, 1.25rem);
+                color: rgba(255, 255, 255, 0.9);
+                max-width: 700px;
+                margin-bottom: 2rem;
+            }
+
+            .back-link {
+                display: inline-block;
+                padding: 0.9rem 2rem;
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--white);
+                text-decoration: none;
+                font-weight: 600;
+                border-radius: 50px;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            .back-link:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: var(--accent-teal);
+                transform: translateY(-2px);
+            }
+
+            /* Sections */
             section {
-                padding: 3rem 1.5rem;
+                padding: 4rem 2rem;
+                max-width: 1400px;
+                margin: 0 auto;
             }
-            
-            .types-grid,
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .section-tag {
+                display: inline-block;
+                padding: 0.5rem 1.2rem;
+                background: var(--light-bg);
+                color: var(--accent-teal);
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                border-radius: 50px;
+                margin-bottom: 1rem;
+            }
+
+            .section-header h2 {
+                font-family: "Epilogue", sans-serif;
+                font-size: clamp(2rem, 4vw, 2.8rem);
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 1rem;
+                letter-spacing: -0.5px;
+            }
+
+            .section-header p {
+                font-size: 1.1rem;
+                color: var(--text-medium);
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            /* Types Grid */
+            .types-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .type-card {
+                background: var(--white);
+                border: 2px solid var(--border-color);
+                border-radius: 16px;
+                padding: 2rem;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .type-card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: var(--gradient-1);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s ease;
+            }
+
+            .type-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+                border-color: var(--accent-teal);
+            }
+
+            .type-card:hover::before {
+                transform: scaleX(1);
+            }
+
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                background: var(--gradient-1);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .type-card h3 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 1rem;
+            }
+
+            .type-card p {
+                color: var(--text-medium);
+                line-height: 1.7;
+                margin-bottom: 0.8rem;
+            }
+
+            .type-card ul {
+                margin-top: 0.8rem;
+                padding-left: 1.3rem;
+            }
+
+            .type-card li {
+                color: var(--text-medium);
+                margin-bottom: 0.5rem;
+                font-size: 0.95rem;
+            }
+
+            /* Info Grid */
             .info-grid {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
             }
-            
+
+            .info-card {
+                background: var(--white);
+                border: 2px solid var(--border-color);
+                border-radius: 16px;
+                padding: 2rem;
+                transition: all 0.4s ease;
+            }
+
+            .info-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+                border-color: var(--accent-teal);
+            }
+
+            .info-card h3 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            .info-card h3 span {
+                font-size: 2rem;
+            }
+
+            .info-card p,
+            .info-card li {
+                color: var(--text-medium);
+                line-height: 1.8;
+            }
+
+            .info-card ul {
+                margin-top: 0.8rem;
+                padding-left: 1.3rem;
+            }
+
+            .info-card li {
+                margin-bottom: 0.6rem;
+            }
+
+            /* Cycle Diagram */
+            .cycle-container {
+                background: var(--light-bg);
+                border-radius: 20px;
+                padding: 3rem 2rem;
+                margin: 3rem 0;
+            }
+
+            .cycle-title {
+                text-align: center;
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 3rem;
+                color: var(--primary-dark);
+            }
+
             .cycle-steps {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+                max-width: 1000px;
+                margin: 0 auto;
             }
-            
+
+            .cycle-step {
+                background: var(--white);
+                border-radius: 12px;
+                padding: 2rem 1.5rem;
+                text-align: center;
+                border: 2px solid var(--border-color);
+                position: relative;
+            }
+
             .cycle-step::after {
-                content: '↓';
+                content: "→";
+                position: absolute;
+                right: -2rem;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 2rem;
+                color: var(--accent-teal);
+                font-weight: bold;
+            }
+
+            .cycle-step:last-child::after {
+                content: "↻";
                 right: auto;
                 left: 50%;
                 top: auto;
-                bottom: -2.5rem;
+                bottom: -3rem;
                 transform: translateX(-50%);
             }
-            
-            .cycle-step:last-child::after {
-                bottom: -3rem;
+
+            .step-number {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background: var(--gradient-1);
+                color: white;
+                border-radius: 50%;
+                line-height: 40px;
+                font-weight: bold;
+                margin-bottom: 1rem;
             }
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header id="header">
-        <nav>
-            <div class="logo">Prevención<span>+</span></div>
-            <button class="menu-toggle" id="menuToggle">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#tipos">Tipos</a></li>
-                <li><a href="#ciclo">El Ciclo</a></li>
-                <li><a href="#efectos">Efectos</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Ludopatía: <span class="highlight">Juegos y Apuestas</span></h1>
-            <p>La adicción al juego es un trastorno serio que puede destruir vidas, familias y finanzas. No requiere sustancias químicas para ser devastadora.</p>
-            <a href="index.html" class="back-link">← Volver a inicio</a>
-        </div>
-    </section>
+            .cycle-step h4 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 0.5rem;
+            }
 
-    <!-- Tipos de Juegos -->
-    <section id="tipos">
-        <div class="section-header">
-            <span class="section-tag">Clasificación</span>
-            <h2>Tipos de Juegos de Azar</h2>
-            <p>El juego problemático puede manifestarse en diferentes formas, todas igualmente adictivas.</p>
-        </div>
-        
-        <div class="types-grid">
-            <div class="type-card">
-                <div class="card-icon">🎰</div>
-                <h3>Casinos</h3>
-                <p>Establecimientos físicos y en línea que ofrecen múltiples juegos de azar.</p>
-                <ul>
-                    <li>Máquinas tragamonedas</li>
-                    <li>Ruleta</li>
-                    <li>Blackjack y póker</li>
-                    <li>Dados y otros juegos de mesa</li>
-                </ul>
-            </div>
-            
-            <div class="type-card">
-                <div class="card-icon">🎲</div>
-                <h3>Apuestas Deportivas</h3>
-                <p>Apostando en resultados de eventos deportivos, uno de los segmentos de más rápido crecimiento.</p>
-                <ul>
-                    <li>Fútbol, baloncesto, béisbol</li>
-                    <li>Carreras de caballos</li>
-                    <li>Apuestas en vivo durante partidos</li>
-                    <li>Fantasy sports</li>
-                </ul>
-            </div>
-            
-            <div class="type-card">
-                <div class="card-icon">🎫</div>
-                <h3>Loterías y Sorteos</h3>
-                <p>Juegos de azar basados en números aleatorios, legales en la mayoría de países.</p>
-                <ul>
-                    <li>Loterías nacionales</li>
-                    <li>Raspaditos</li>
-                    <li>Rifas y sorteos</li>
-                    <li>Bingos</li>
-                </ul>
-            </div>
-            
-            <div class="type-card">
-                <div class="card-icon">💻</div>
-                <h3>Juegos en Línea</h3>
-                <p>El acceso 24/7 desde dispositivos móviles ha aumentado dramáticamente el riesgo de adicción.</p>
-                <ul>
-                    <li>Casinos virtuales</li>
-                    <li>Póker en línea</li>
-                    <li>Aplicaciones de apuestas</li>
-                    <li>Criptomonedas y apuestas</li>
-                </ul>
-            </div>
-            
-            <div class="type-card">
-                <div class="card-icon">🃏</div>
-                <h3>Juegos de Cartas</h3>
-                <p>Juegos informales que pueden escalar a apuestas serias.</p>
-                <ul>
-                    <li>Póker privado</li>
-                    <li>Juegos de naipes tradicionales</li>
-                    <li>Apuestas entre amigos</li>
-                </ul>
-            </div>
-            
-            <div class="type-card">
-                <div class="card-icon">📱</div>
-                <h3>Microtransacciones</h3>
-                <p>Videojuegos con mecánicas similares al juego, especialmente preocupantes para jóvenes.</p>
-                <ul>
-                    <li>Loot boxes (cajas de recompensa)</li>
-                    <li>Gacha games</li>
-                    <li>Apuestas con skins de videojuegos</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+            .cycle-step p {
+                color: var(--text-medium);
+                font-size: 0.9rem;
+            }
 
-    <!-- Ciclo de la Adicción -->
-    <section id="ciclo">
-        <div class="cycle-container">
-            <div class="cycle-title">El Ciclo de la Adicción al Juego</div>
-            <div class="cycle-steps">
-                <div class="cycle-step">
-                    <div class="step-number">1</div>
-                    <h4>Fase de Ganancia</h4>
-                    <p>Victoria inicial genera euforia y creencia de que se puede ganar consistentemente</p>
+            /* Warning Box */
+            .warning-box {
+                background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+                border-radius: 20px;
+                padding: 2.5rem;
+                color: var(--white);
+                text-align: center;
+                margin: 3rem 0;
+            }
+
+            .warning-box h3 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            .warning-box p {
+                font-size: 1.1rem;
+                opacity: 0.95;
+            }
+
+            /* Help Box */
+            .help-box {
+                background: var(--gradient-1);
+                border-radius: 20px;
+                padding: 2.5rem;
+                color: var(--white);
+                text-align: center;
+                margin: 3rem 0;
+            }
+
+            .help-box h3 {
+                font-family: "Epilogue", sans-serif;
+                font-size: 1.8rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            .help-box p {
+                font-size: 1.1rem;
+                opacity: 0.95;
+                margin-bottom: 1.5rem;
+            }
+
+            .help-numbers {
+                display: flex;
+                gap: 1.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .help-number {
+                background: rgba(255, 255, 255, 0.15);
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                backdrop-filter: blur(10px);
+            }
+
+            /* Footer */
+            footer {
+                background: var(--primary-dark);
+                color: rgba(255, 255, 255, 0.8);
+                padding: 3rem 2rem 2rem;
+                margin-top: 4rem;
+            }
+
+            .footer-content {
+                max-width: 1400px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .footer-content p {
+                margin-bottom: 1rem;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 1.5rem;
+            }
+
+            .footer-links a {
+                color: rgba(255, 255, 255, 0.6);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .footer-links a:hover {
+                color: var(--accent-teal);
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .menu-toggle {
+                    display: block;
+                }
+
+                .nav-links {
+                    position: fixed;
+                    top: 80px;
+                    left: -100%;
+                    width: 100%;
+                    height: calc(100vh - 80px);
+                    background: var(--white);
+                    flex-direction: column;
+                    padding: 2rem;
+                    gap: 1.5rem;
+                    transition: left 0.3s ease;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                }
+
+                .nav-links.active {
+                    left: 0;
+                }
+
+                section {
+                    padding: 3rem 1.5rem;
+                }
+
+                .types-grid,
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .cycle-steps {
+                    grid-template-columns: 1fr;
+                }
+
+                .cycle-step::after {
+                    content: "↓";
+                    right: auto;
+                    left: 50%;
+                    top: auto;
+                    bottom: -2.5rem;
+                    transform: translateX(-50%);
+                }
+
+                .cycle-step:last-child::after {
+                    bottom: -3rem;
+                }
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="header">
+            <nav>
+                <div class="logo">Prevención<span>+</span></div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#tipos">Tipos</a></li>
+                    <li><a href="#ciclo">El Ciclo</a></li>
+                    <li><a href="#efectos">Efectos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <h1>
+                    Ludopatía: <span class="highlight">Juegos y Apuestas</span>
+                </h1>
+                <p>
+                    La adicción al juego es un trastorno serio que puede
+                    destruir vidas, familias y finanzas. No requiere sustancias
+                    químicas para ser devastadora.
+                </p>
+                <a href="index.html" class="back-link">← Volver a inicio</a>
+            </div>
+        </section>
+
+        <!-- Tipos de Juegos -->
+        <section id="tipos">
+            <div class="section-header">
+                <span class="section-tag">Clasificación</span>
+                <h2>Tipos de Juegos de Azar</h2>
+                <p>
+                    El juego problemático puede manifestarse en diferentes
+                    formas, todas igualmente adictivas.
+                </p>
+            </div>
+
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="card-icon">🎰</div>
+                    <h3>Casinos</h3>
+                    <p>
+                        Establecimientos físicos y en línea que ofrecen
+                        múltiples juegos de azar.
+                    </p>
+                    <ul>
+                        <li>Máquinas tragamonedas</li>
+                        <li>Ruleta</li>
+                        <li>Blackjack y póker</li>
+                        <li>Dados y otros juegos de mesa</li>
+                    </ul>
                 </div>
-                
-                <div class="cycle-step">
-                    <div class="step-number">2</div>
-                    <h4>Fase de Pérdida</h4>
-                    <p>Las pérdidas comienzan, pero la persona cree que puede recuperar el dinero perdido</p>
+
+                <div class="type-card">
+                    <div class="card-icon">🎲</div>
+                    <h3>Apuestas Deportivas</h3>
+                    <p>
+                        Apostando en resultados de eventos deportivos, uno de
+                        los segmentos de más rápido crecimiento.
+                    </p>
+                    <ul>
+                        <li>Fútbol, baloncesto, béisbol</li>
+                        <li>Carreras de caballos</li>
+                        <li>Apuestas en vivo durante partidos</li>
+                        <li>Fantasy sports</li>
+                    </ul>
                 </div>
-                
-                <div class="cycle-step">
-                    <div class="step-number">3</div>
-                    <h4>Fase de Desesperación</h4>
-                    <p>Préstamos, deudas, mentiras. El juego consume toda la vida de la persona</p>
+
+                <div class="type-card">
+                    <div class="card-icon">🎫</div>
+                    <h3>Loterías y Sorteos</h3>
+                    <p>
+                        Juegos de azar basados en números aleatorios, legales en
+                        la mayoría de países.
+                    </p>
+                    <ul>
+                        <li>Loterías nacionales</li>
+                        <li>Raspaditos</li>
+                        <li>Rifas y sorteos</li>
+                        <li>Bingos</li>
+                    </ul>
                 </div>
-                
-                <div class="cycle-step">
-                    <div class="step-number">4</div>
-                    <h4>Fase de Abandono</h4>
-                    <p>Crisis profunda, pérdida de esperanza. Momento crítico para buscar ayuda</p>
+
+                <div class="type-card">
+                    <div class="card-icon">💻</div>
+                    <h3>Juegos en Línea</h3>
+                    <p>
+                        El acceso 24/7 desde dispositivos móviles ha aumentado
+                        dramáticamente el riesgo de adicción.
+                    </p>
+                    <ul>
+                        <li>Casinos virtuales</li>
+                        <li>Póker en línea</li>
+                        <li>Aplicaciones de apuestas</li>
+                        <li>Criptomonedas y apuestas</li>
+                    </ul>
+                </div>
+
+                <div class="type-card">
+                    <div class="card-icon">🃏</div>
+                    <h3>Juegos de Cartas</h3>
+                    <p>
+                        Juegos informales que pueden escalar a apuestas serias.
+                    </p>
+                    <ul>
+                        <li>Póker privado</li>
+                        <li>Juegos de naipes tradicionales</li>
+                        <li>Apuestas entre amigos</li>
+                    </ul>
+                </div>
+
+                <div class="type-card">
+                    <div class="card-icon">📱</div>
+                    <h3>Microtransacciones</h3>
+                    <p>
+                        Videojuegos con mecánicas similares al juego,
+                        especialmente preocupantes para jóvenes.
+                    </p>
+                    <ul>
+                        <li>Loot boxes (cajas de recompensa)</li>
+                        <li>Gacha games</li>
+                        <li>Apuestas con skins de videojuegos</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Warning Box -->
-    <div class="warning-box">
-        <h3>⚠️ "Perseguir las Pérdidas"</h3>
-        <p>El comportamiento más peligroso es intentar recuperar el dinero perdido apostando más. Esto crea un ciclo destructivo donde las pérdidas se acumulan exponencialmente. La casa siempre tiene ventaja matemática.</p>
-    </div>
+        <!-- Ciclo de la Adicción -->
+        <section id="ciclo">
+            <div class="cycle-container">
+                <div class="cycle-title">El Ciclo de la Adicción al Juego</div>
+                <div class="cycle-steps">
+                    <div class="cycle-step">
+                        <div class="step-number">1</div>
+                        <h4>Fase de Ganancia</h4>
+                        <p>
+                            Victoria inicial genera euforia y creencia de que se
+                            puede ganar consistentemente
+                        </p>
+                    </div>
 
-    <!-- Efectos -->
-    <section id="efectos">
-        <div class="section-header">
-            <span class="section-tag">Consecuencias</span>
-            <h2>Efectos de la Ludopatía</h2>
-            <p>La adicción al juego impacta todas las áreas de la vida de una persona.</p>
-        </div>
-        
-        <div class="info-grid">
-            <div class="info-card">
-                <h3><span>💰</span>Financieros</h3>
-                <ul>
-                    <li>Pérdida de ahorros y patrimonio</li>
-                    <li>Deudas acumuladas (tarjetas, préstamos)</li>
-                    <li>Bancarrota personal y familiar</li>
-                    <li>Pérdida de vivienda y propiedades</li>
-                    <li>Incapacidad de cubrir necesidades básicas</li>
-                    <li>Robos o fraudes para obtener dinero</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h3><span>👨‍👩‍👧</span>Familiares y Sociales</h3>
-                <ul>
-                    <li>Mentiras constantes sobre las pérdidas</li>
-                    <li>Pérdida de confianza de seres queridos</li>
-                    <li>Divorcio y separaciones</li>
-                    <li>Negligencia de responsabilidades familiares</li>
-                    <li>Aislamiento social</li>
-                    <li>Impacto en hijos (trauma, inseguridad económica)</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h3><span>🧠</span>Psicológicos</h3>
-                <ul>
-                    <li>Depresión severa</li>
-                    <li>Ansiedad y ataques de pánico</li>
-                    <li>Pensamientos suicidas (tasa alta en ludópatas)</li>
-                    <li>Baja autoestima y vergüenza</li>
-                    <li>Obsesión constante con el juego</li>
-                    <li>Irritabilidad y cambios de humor</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h3><span>💼</span>Laborales</h3>
-                <ul>
-                    <li>Ausentismo y bajo rendimiento</li>
-                    <li>Jugar durante horario laboral</li>
-                    <li>Pérdida del empleo</li>
-                    <li>Destrucción de reputación profesional</li>
-                    <li>Incapacidad de concentración</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h3><span>⚖️</span>Legales</h3>
-                <ul>
-                    <li>Fraude y malversación de fondos</li>
-                    <li>Robo a familiares o empleadores</li>
-                    <li>Falsificación de documentos</li>
-                    <li>Evasión de deudas</li>
-                    <li>Antecedentes penales</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h3><span>❤️</span>Salud Física</h3>
-                <ul>
-                    <li>Trastornos del sueño</li>
-                    <li>Problemas cardiovasculares por estrés</li>
-                    <li>Dolores de cabeza y úlceras</li>
-                    <li>Descuido de la salud personal</li>
-                    <li>Abuso de sustancias (alcohol, drogas)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+                    <div class="cycle-step">
+                        <div class="step-number">2</div>
+                        <h4>Fase de Pérdida</h4>
+                        <p>
+                            Las pérdidas comienzan, pero la persona cree que
+                            puede recuperar el dinero perdido
+                        </p>
+                    </div>
 
-    <!-- Señales de Alerta y Prevención -->
-    <section>
-        <div class="section-header">
-            <span class="section-tag">Detección</span>
-            <h2>Señales de Alerta y Prevención</h2>
-            <p>Reconocer el problema a tiempo puede salvar vidas y familias.</p>
-        </div>
-        
-        <div class="info-grid">
-            <div class="info-card">
-                <h3><span>🚨</span>Señales de Advertencia</h3>
-                <ul>
-                    <li>Preocupación constante por el juego</li>
-                    <li>Necesidad de apostar cantidades cada vez mayores</li>
-                    <li>Intentos fallidos de dejar de jugar</li>
-                    <li>Irritabilidad al intentar reducir el juego</li>
-                    <li>Jugar para escapar de problemas o emociones</li>
-                    <li>Mentir sobre el tiempo o dinero gastado</li>
-                    <li>Pedir dinero prestado para jugar</li>
-                    <li>Arriesgar relaciones o empleo por el juego</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h3><span>🛡️</span>Prevención</h3>
-                <ul>
-                    <li>Educación sobre probabilidades y ventaja de la casa</li>
-                    <li>Establecer límites de tiempo y dinero ANTES de jugar</li>
-                    <li>Nunca jugar con dinero prestado</li>
-                    <li>Evitar jugar en estados emocionales alterados</li>
-                    <li>Ser consciente del historial familiar de adicciones</li>
-                    <li>Limitar acceso a casinos en línea y apps</li>
-                    <li>Buscar actividades alternativas de entretenimiento</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h3><span>💚</span>Tratamiento</h3>
-                <ul>
-                    <li>Terapia cognitivo-conductual</li>
-                    <li>Grupos de apoyo (Jugadores Anónimos)</li>
-                    <li>Terapia familiar</li>
-                    <li>Asesoría financiera</li>
-                    <li>Autoexclusión de casinos</li>
-                    <li>Medicación para condiciones concurrentes</li>
-                    <li>Programas de rehabilitación especializados</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+                    <div class="cycle-step">
+                        <div class="step-number">3</div>
+                        <h4>Fase de Desesperación</h4>
+                        <p>
+                            Préstamos, deudas, mentiras. El juego consume toda
+                            la vida de la persona
+                        </p>
+                    </div>
 
-    <!-- Help Box -->
-    <div class="help-box">
-        <h3>📞 ¿Necesitas Ayuda?</h3>
-        <p>La ludopatía es una enfermedad tratable. No estás solo y la recuperación es posible.</p>
-        <div class="help-numbers">
-            <div class="help-number">
-                <strong>Jugadores Anónimos:</strong> Grupos de apoyo gratuitos
+                    <div class="cycle-step">
+                        <div class="step-number">4</div>
+                        <h4>Fase de Abandono</h4>
+                        <p>
+                            Crisis profunda, pérdida de esperanza. Momento
+                            crítico para buscar ayuda
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="help-number">
-                <strong>Línea Nacional:</strong> 800-911-2000
-            </div>
-            <div class="help-number">
-                <strong>Emergencias:</strong> 911
-            </div>
-        </div>
-        <p style="margin-top: 1.5rem; font-size: 0.95rem;">Si tienes pensamientos suicidas, llama inmediatamente al 911 o acude a emergencias.</p>
-    </div>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo" style="color: white; margin-bottom: 1rem;">Prevención<span style="color: var(--accent-teal);">+</span></div>
-            <p>Información educativa sobre ludopatía y juegos de azar</p>
-            <p style="opacity: 0.6; font-size: 0.9rem;">El juego debe ser entretenimiento, nunca una forma de ganar dinero</p>
-            <div class="footer-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#tipos">Tipos</a>
-                <a href="#ciclo">El Ciclo</a>
-                <a href="#efectos">Efectos</a>
-            </div>
-            <p style="margin-top: 2rem; opacity: 0.5; font-size: 0.85rem;">© 2024 - Proyecto Educativo</p>
+        <!-- Warning Box -->
+        <div class="warning-box">
+            <h3>⚠️ "Perseguir las Pérdidas"</h3>
+            <p>
+                El comportamiento más peligroso es intentar recuperar el dinero
+                perdido apostando más. Esto crea un ciclo destructivo donde las
+                pérdidas se acumulan exponencialmente. La casa siempre tiene
+                ventaja matemática.
+            </p>
         </div>
-    </footer>
 
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.textContent = '☰';
+        <!-- Efectos -->
+        <section id="efectos">
+            <div class="section-header">
+                <span class="section-tag">Consecuencias</span>
+                <h2>Efectos de la Ludopatía</h2>
+                <p>
+                    La adicción al juego impacta todas las áreas de la vida de
+                    una persona.
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><span>💰</span>Financieros</h3>
+                    <ul>
+                        <li>Pérdida de ahorros y patrimonio</li>
+                        <li>Deudas acumuladas (tarjetas, préstamos)</li>
+                        <li>Bancarrota personal y familiar</li>
+                        <li>Pérdida de vivienda y propiedades</li>
+                        <li>Incapacidad de cubrir necesidades básicas</li>
+                        <li>Robos o fraudes para obtener dinero</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>👨‍👩‍👧</span>Familiares y Sociales</h3>
+                    <ul>
+                        <li>Mentiras constantes sobre las pérdidas</li>
+                        <li>Pérdida de confianza de seres queridos</li>
+                        <li>Divorcio y separaciones</li>
+                        <li>Negligencia de responsabilidades familiares</li>
+                        <li>Aislamiento social</li>
+                        <li>
+                            Impacto en hijos (trauma, inseguridad económica)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>🧠</span>Psicológicos</h3>
+                    <ul>
+                        <li>Depresión severa</li>
+                        <li>Ansiedad y ataques de pánico</li>
+                        <li>Pensamientos suicidas (tasa alta en ludópatas)</li>
+                        <li>Baja autoestima y vergüenza</li>
+                        <li>Obsesión constante con el juego</li>
+                        <li>Irritabilidad y cambios de humor</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>💼</span>Laborales</h3>
+                    <ul>
+                        <li>Ausentismo y bajo rendimiento</li>
+                        <li>Jugar durante horario laboral</li>
+                        <li>Pérdida del empleo</li>
+                        <li>Destrucción de reputación profesional</li>
+                        <li>Incapacidad de concentración</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>⚖️</span>Legales</h3>
+                    <ul>
+                        <li>Fraude y malversación de fondos</li>
+                        <li>Robo a familiares o empleadores</li>
+                        <li>Falsificación de documentos</li>
+                        <li>Evasión de deudas</li>
+                        <li>Antecedentes penales</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>❤️</span>Salud Física</h3>
+                    <ul>
+                        <li>Trastornos del sueño</li>
+                        <li>Problemas cardiovasculares por estrés</li>
+                        <li>Dolores de cabeza y úlceras</li>
+                        <li>Descuido de la salud personal</li>
+                        <li>Abuso de sustancias (alcohol, drogas)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Señales de Alerta y Prevención -->
+        <section>
+            <div class="section-header">
+                <span class="section-tag">Detección</span>
+                <h2>Señales de Alerta y Prevención</h2>
+                <p>
+                    Reconocer el problema a tiempo puede salvar vidas y
+                    familias.
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><span>🚨</span>Señales de Advertencia</h3>
+                    <ul>
+                        <li>Preocupación constante por el juego</li>
+                        <li>
+                            Necesidad de apostar cantidades cada vez mayores
+                        </li>
+                        <li>Intentos fallidos de dejar de jugar</li>
+                        <li>Irritabilidad al intentar reducir el juego</li>
+                        <li>Jugar para escapar de problemas o emociones</li>
+                        <li>Mentir sobre el tiempo o dinero gastado</li>
+                        <li>Pedir dinero prestado para jugar</li>
+                        <li>Arriesgar relaciones o empleo por el juego</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>🛡️</span>Prevención</h3>
+                    <ul>
+                        <li>
+                            Educación sobre probabilidades y ventaja de la casa
+                        </li>
+                        <li>
+                            Establecer límites de tiempo y dinero ANTES de jugar
+                        </li>
+                        <li>Nunca jugar con dinero prestado</li>
+                        <li>Evitar jugar en estados emocionales alterados</li>
+                        <li>
+                            Ser consciente del historial familiar de adicciones
+                        </li>
+                        <li>Limitar acceso a casinos en línea y apps</li>
+                        <li>
+                            Buscar actividades alternativas de entretenimiento
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3><span>💚</span>Tratamiento</h3>
+                    <ul>
+                        <li>Terapia cognitivo-conductual</li>
+                        <li>Grupos de apoyo (Jugadores Anónimos)</li>
+                        <li>Terapia familiar</li>
+                        <li>Asesoría financiera</li>
+                        <li>Autoexclusión de casinos</li>
+                        <li>Medicación para condiciones concurrentes</li>
+                        <li>Programas de rehabilitación especializados</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Box -->
+        <div class="help-box">
+            <h3>📞 ¿Necesitas Ayuda?</h3>
+            <p>
+                La ludopatía es una enfermedad tratable. No estás solo y la
+                recuperación es posible.
+            </p>
+            <div class="help-numbers">
+                <div class="help-number">
+                    <strong>Jugadores Anónimos:</strong> Grupos de apoyo
+                    gratuitos
+                </div>
+                <div class="help-number">
+                    <strong>Línea Nacional:</strong> 800-911-2000
+                </div>
+                <div class="help-number"><strong>Emergencias:</strong> 911</div>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem">
+                Si tienes pensamientos suicidas, llama inmediatamente al 911 o
+                acude a emergencias.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="logo" style="color: white; margin-bottom: 1rem">
+                    Prevención<span style="color: var(--accent-teal)">+</span>
+                </div>
+                <p>Información educativa sobre ludopatía y juegos de azar</p>
+                <p style="opacity: 0.6; font-size: 0.9rem">
+                    El juego debe ser entretenimiento, nunca una forma de ganar
+                    dinero
+                </p>
+                <div class="footer-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#tipos">Tipos</a>
+                    <a href="#ciclo">El Ciclo</a>
+                    <a href="#efectos">Efectos</a>
+                </div>
+                <!--<p style="margin-top: 2rem; opacity: 0.5; font-size: 0.85rem;">© Proyecto Educativo</p>-->
+            </div>
+        </footer>
+
+        <script>
+            // Mobile menu toggle
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+
+            menuToggle.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+                menuToggle.textContent = navLinks.classList.contains("active")
+                    ? "✕"
+                    : "☰";
             });
-        });
-        
-        // Header scroll effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll(".nav-links a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("active");
+                    menuToggle.textContent = "☰";
+                });
+            });
+
+            // Header scroll effect
+            const header = document.getElementById("header");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
                 }
             });
-        });
-    </script>
-</body>
+
+            // Smooth scroll for navigation
+            document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(
+                        this.getAttribute("href"),
+                    );
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: "smooth",
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
